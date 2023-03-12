@@ -426,5 +426,4 @@ new_scene = "res://Scenes/World.tscn"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CaveDoor"]
 position = Vector2( 0, -5 )
-scale = Vector2( 1, 1 )
 shape = SubResource( 14 )

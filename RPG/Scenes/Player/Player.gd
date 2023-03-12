@@ -3,6 +3,7 @@ extends KinematicBody2D
 class_name Player
 
 onready var animated_sprite: AnimatedSprite = $AnimatedSprite
+onready var hitbox: Area2D = $Hitbox
 
 const ACCELERATION := 25
 const RUN_SPEED := 80
@@ -50,7 +51,11 @@ func _input(_event: InputEvent) -> void:
 	#if Input.is_action_pressed("run") : is_running = true
 	#if Input.is_action_just_released("run") :is_running = false
 	max_speed = RUN_SPEED if is_running else WALK_SPEED
-	
+
+func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed("attack"):
+		hitbox.attack()
+
 #### VIRTUALS ####
 
 #### LOGIC ####
