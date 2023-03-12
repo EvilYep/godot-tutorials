@@ -8,5 +8,5 @@ func _input(event: InputEvent) -> void:
 			next_level()
 
 func next_level() -> void:
-	var PTS = get_tree().change_scene(new_scene)
+	var _PTS = get_tree().change_scene(new_scene)
 	Global.door_name = name
