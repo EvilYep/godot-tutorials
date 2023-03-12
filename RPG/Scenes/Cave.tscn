@@ -1,8 +1,9 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://Assets/Forest-Tileset.png" type="Texture" id=1]
 [ext_resource path="res://Scenes/Player/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scenes/CaveDoor.gd" type="Script" id=3]
+[ext_resource path="res://Scenes/NPC/CaveNPC.tscn" type="PackedScene" id=4]
 
 [sub_resource type="ConvexPolygonShape2D" id=3]
 points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
@@ -427,3 +428,6 @@ new_scene = "res://Scenes/World.tscn"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CaveDoor"]
 position = Vector2( 0, -5 )
 shape = SubResource( 14 )
+
+[node name="CaveNPC" parent="." instance=ExtResource( 4 )]
+position = Vector2( 230, 129 )
