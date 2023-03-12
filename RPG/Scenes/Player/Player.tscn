@@ -101,3 +101,13 @@ offset = Vector2( -1, -6 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 scale = Vector2( 0.279994, 0.279994 )
 shape = SubResource( 18 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( 70, 3 )
+current = true
+limit_left = 49
+limit_top = 17
+limit_right = 496
+limit_bottom = 207
+limit_smoothed = true
+smoothing_enabled = true
