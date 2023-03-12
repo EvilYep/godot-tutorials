@@ -24,6 +24,10 @@ config/name="Rpg"
 run/main_scene="res://Scenes/World.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+Global="*res://Global.gd"
+
 [display]
 
 window/size/width=320
