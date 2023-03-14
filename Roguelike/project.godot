@@ -8,9 +8,32 @@
 
 config_version=4
 
+_global_script_classes=[ {
+"base": "KinematicBody2D",
+"class": "Character",
+"language": "GDScript",
+"path": "res://Characters/Character.gd"
+}, {
+"base": "Character",
+"class": "Player",
+"language": "GDScript",
+"path": "res://Characters/Player/Player.gd"
+}, {
+"base": "Node",
+"class": "StateMachine",
+"language": "GDScript",
+"path": "res://Characters/StateMachine.gd"
+} ]
+_global_script_class_icons={
+"Character": "res://Assets/knight_icon.png",
+"Player": "",
+"StateMachine": ""
+}
+
 [application]
 
 config/name="Roguelike"
+run/main_scene="res://Game.tscn"
 config/icon="res://icon.png"
 
 [display]
