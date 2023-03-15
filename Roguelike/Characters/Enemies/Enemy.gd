@@ -3,8 +3,8 @@ class_name Enemy, "res://Assets/goblin_icon.png"
 
 var path : PoolVector2Array
 
-onready var navigation: Navigation2D = get_tree().current_scene.get_node("Navigation2D")
 onready var player: KinematicBody2D = get_tree().current_scene.get_node("Player")
+onready var navigation_agent_2d: NavigationAgent2D = $NavigationAgent2D
 
 #### ACCESSORS ####
 
@@ -37,4 +37,4 @@ func chase() -> void:
 #### SIGNAL RESPONSES ####
 
 func _on_PathTimer_timeout() -> void:
-	path = navigation.get_simple_path(global_position, player.position)
+	path = Navigation2DServer.map_get_path(navigation_agent_2d.get_navigation_map(), global_position, player.position, false)
