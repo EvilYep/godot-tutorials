@@ -40,5 +40,5 @@ func _on_DetectionArea_body_exited(_body: Node) -> void:
 func _on_Timer_timeout() -> void:
 	$DetectionArea/CollisionShape2D.set_deferred("disabled", false)
 
-func _on_Area2D_body_entered(body: Node) -> void:
+func _on_Area2D_body_entered(_body: Node) -> void:
 	self.visible = true
