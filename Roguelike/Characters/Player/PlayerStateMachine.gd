@@ -5,6 +5,8 @@ extends StateMachine
 func _init() -> void:
 	add_state("idle")
 	add_state("move")
+	add_state("hurt")
+	add_state("dead")
 
 func _ready() -> void:
 	set_state(states.idle)
@@ -12,8 +14,9 @@ func _ready() -> void:
 #### LOGIC ####
 
 func update(_delta: float) -> void:
-	parent.get_input()
-	parent.move()
+	if state == states.idle or state == states.move:
+		parent.get_input()
+		parent.move()
 
 func get_transition() -> int:
 	match state:
@@ -23,6 +26,9 @@ func get_transition() -> int:
 		states.move:
 			if parent.velocity.length() < 10:
 				return states.idle
+		states.hurt:
+			if not animation_player.is_playing():
+				return states.idle
 	return -1
 
 func enter_state(new_state: int, _old_state: int) -> void:
@@ -31,6 +37,10 @@ func enter_state(new_state: int, _old_state: int) -> void:
 			animation_player.play("idle")
 		states.move:
 			animation_player.play("move")
+		states.hurt:
+			animation_player.play("hurt")
+		states.dead:
+			animation_player.play("dead")
 
 #### INPUTS ####
 

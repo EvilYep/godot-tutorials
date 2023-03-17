@@ -4,6 +4,7 @@ class_name StateMachine
 var states: Dictionary = {}
 var previous_state: int = -1
 var state: int = -1 setget set_state
+var transition := -1
 
 onready var parent: Character = get_parent()
 onready var animation_player: AnimationPlayer = get_parent().get_node("AnimationPlayer")
@@ -24,7 +25,7 @@ func set_state(new_state: int) -> void:
 func _physics_process(delta: float) -> void:
 	if state != -1:
 		update(delta)
-		var transition = get_transition()
+		transition = get_transition()
 		if transition != -1:
 			set_state(transition)
 

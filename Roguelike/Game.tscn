@@ -68,3 +68,13 @@ position = Vector2( 87, 73 )
 position = Vector2( 334, 174 )
 acceleration = 20
 max_speed = 50
+
+[node name="FlyingCreature2" parent="." instance=ExtResource( 4 )]
+position = Vector2( 152, 242 )
+acceleration = 20
+max_speed = 50
+
+[node name="FlyingCreature3" parent="." instance=ExtResource( 4 )]
+position = Vector2( 368, 36 )
+acceleration = 20
+max_speed = 50

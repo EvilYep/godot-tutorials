@@ -18,9 +18,6 @@ func _process(_delta: float) -> void:
 	mouse_direction = (get_global_mouse_position() - global_position).normalized()
 	animated_sprite.flip_h = mouse_direction.x < 0
 	_rotate_sword()
-	
-	if Input.is_action_just_pressed("attack") and not sword_animation_player.is_playing():
-		sword_animation_player.play("attack")
 
 #### LOGIC ####
 
@@ -29,6 +26,9 @@ func get_input() -> void:
 		int(Input.is_action_pressed("ui_right")) - int(Input.is_action_pressed("ui_left")),
 		int(Input.is_action_pressed("ui_down")) - int(Input.is_action_pressed("ui_up"))
 	)
+	
+	if Input.is_action_just_pressed("attack") and not sword_animation_player.is_playing():
+		sword_animation_player.play("attack")
 
 func _rotate_sword() -> void:
 	sword.rotation = mouse_direction.angle()

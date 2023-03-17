@@ -1,9 +1,11 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://Characters/Enemies/Enemy.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Characters/Enemies/FlyingCreatureStateMachine.gd" type="Script" id=2]
 [ext_resource path="res://Assets/Enemies/fly_anim_spritesheet.png" type="Texture" id=3]
 [ext_resource path="res://Assets/FX/enemy_afterdead_explosion_anim_spritesheet.png" type="Texture" id=4]
+[ext_resource path="res://Characters/Enemies/FlyingCreature.gd" type="Script" id=5]
+[ext_resource path="res://Characters/Hitbox.gd" type="Script" id=6]
 
 [sub_resource type="AtlasTexture" id=10]
 atlas = ExtResource( 4 )
@@ -53,6 +55,9 @@ animations = [ {
 [sub_resource type="CircleShape2D" id=6]
 radius = 3.0
 
+[sub_resource type="CircleShape2D" id=15]
+radius = 4.12311
+
 [sub_resource type="Animation" id=7]
 length = 0.001
 tracks/0/type = "value"
@@ -90,6 +95,18 @@ tracks/2/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 0,
 "values": [ "fly" ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Hitbox/CollisionShape2D:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
 }
 
 [sub_resource type="Animation" id=14]
@@ -144,6 +161,18 @@ tracks/3/keys = {
 "method": "queue_free"
 } ]
 }
+tracks/4/type = "value"
+tracks/4/path = NodePath("Hitbox/CollisionShape2D:disabled")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
 
 [sub_resource type="Animation" id=8]
 resource_name = "fly"
@@ -188,8 +217,21 @@ tracks/1/keys = {
 "update": 1,
 "values": [ false, true, false, true ]
 }
+tracks/2/type = "value"
+tracks/2/path = NodePath("Hitbox/CollisionShape2D:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
 
 [node name="FlyingCreature" instance=ExtResource( 1 )]
+script = ExtResource( 5 )
 
 [node name="StateMachine" parent="." index="0"]
 script = ExtResource( 2 )
@@ -202,7 +244,16 @@ animation = "fly"
 position = Vector2( 0, 1 )
 shape = SubResource( 6 )
 
-[node name="AnimationPlayer" parent="." index="3"]
+[node name="Hitbox" type="Area2D" parent="." index="3"]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource( 6 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" index="0"]
+position = Vector2( 0, 1 )
+shape = SubResource( 15 )
+
+[node name="AnimationPlayer" parent="." index="4"]
 anims/RESET = SubResource( 7 )
 anims/dead = SubResource( 14 )
 anims/fly = SubResource( 8 )
