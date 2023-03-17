@@ -2,6 +2,7 @@ extends Character
 class_name Player
 
 onready var sword: Node2D = $Sword
+onready var sword_hitbox: Area2D = $Sword/Node2D/Sprite/Hitbox
 onready var sword_animation_player: AnimationPlayer = sword.get_node("SwordAnimationPlayer")
 
 var mouse_direction := Vector2.ZERO
@@ -31,6 +32,7 @@ func get_input() -> void:
 
 func _rotate_sword() -> void:
 	sword.rotation = mouse_direction.angle()
+	sword_hitbox.knockback_direction = mouse_direction
 	if sword.scale.y == 1 and mouse_direction.x < 0:
 		sword.scale.y = -1
 	if sword.scale.y == -1 and mouse_direction.x > 0:

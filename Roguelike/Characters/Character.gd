@@ -3,9 +3,12 @@ class_name Character, "res://Assets/knight_icon.png"
 
 const FRICTION := 0.15
 
+export(int) var health := 2
+
 export(int) var acceleration := 40
 export(int) var max_speed := 100
 
+onready var state_machine: Node = get_node("StateMachine")
 onready var animated_sprite: AnimatedSprite = $AnimatedSprite
 
 var mov_direction := Vector2.ZERO
@@ -31,3 +34,12 @@ func move() -> void:
 	mov_direction = mov_direction.normalized()
 	velocity += mov_direction * acceleration
 	velocity = velocity.limit_length(max_speed)
+
+func take_damage(damage: int, knockback_direction: Vector2, knockback_force: int) -> void:
+	health -= damage
+	if health > 0:
+		state_machine.set_state(state_machine.states.hurt)
+		velocity += knockback_direction * knockback_force
+	else:
+		state_machine.set_state(state_machine.states.dead)
+		velocity += knockback_direction * knockback_force * 2
