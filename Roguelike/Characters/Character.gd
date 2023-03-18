@@ -3,7 +3,8 @@ class_name Character, "res://Assets/knight_icon.png"
 
 const FRICTION := 0.15
 
-export(int) var health := 2
+export(int) var health := 2 setget set_health
+signal health_changed(new_hp)
 
 export(int) var acceleration := 40
 export(int) var max_speed := 100
@@ -18,6 +19,10 @@ var velocity := Vector2.ZERO
 
 func is_class(value: String): return value == "Character" or .is_class(value)
 func get_class() -> String: return "Character"
+
+func set_health(new_hp: int) -> void:
+	health = new_hp
+	emit_signal("health_changed", new_hp)
 
 #### BUILT-IN ####
 
@@ -36,7 +41,7 @@ func move() -> void:
 	velocity = velocity.limit_length(max_speed)
 
 func take_damage(damage: int, knockback_direction: Vector2, knockback_force: int) -> void:
-	health -= damage
+	self.health -= damage
 	if health > 0:
 		state_machine.set_state(state_machine.states.hurt)
 		velocity += knockback_direction * knockback_force
