@@ -2,9 +2,11 @@ extends Character
 class_name Enemy, "res://Assets/goblin_icon.png"
 
 var path : PoolVector2Array
+var target : Vector2
 
+onready var navigation: Navigation2D = get_parent().get_node("Navigation2D")
 onready var player: KinematicBody2D = get_tree().current_scene.get_node("Player")
-onready var navigation_agent_2d: NavigationAgent2D = $NavigationAgent2D
+onready var navigation_agent: NavigationAgent2D = $NavigationAgent2D
 onready var path_timer: Timer = $PathTimer
 
 #### ACCESSORS ####
@@ -39,7 +41,7 @@ func chase() -> void:
 
 func _on_PathTimer_timeout() -> void:
 	if is_instance_valid(player):
-		path = Navigation2DServer.map_get_path(navigation_agent_2d.get_navigation_map(), global_position, player.position, false)
+		path = navigation.get_simple_path(global_position, player.position)
 	else:
 		path_timer.stop()
 		path = []
