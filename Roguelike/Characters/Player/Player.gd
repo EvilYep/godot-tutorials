@@ -37,3 +37,9 @@ func _rotate_sword() -> void:
 		sword.scale.y = -1
 	if sword.scale.y == -1 and mouse_direction.x > 0:
 		sword.scale.y = 1
+
+func switch_camera() -> void:
+	var main_scene_camera = get_tree().current_scene.get_node("Camera2D")
+	main_scene_camera.position = position
+	main_scene_camera.current = true
+	get_node("Camera2D").current = false

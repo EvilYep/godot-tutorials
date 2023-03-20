@@ -4,7 +4,7 @@ class_name Enemy, "res://Assets/goblin_icon.png"
 var path : PoolVector2Array
 var target : Vector2
 
-onready var navigation: Navigation2D = get_parent().get_node("Navigation2D")
+onready var navigation: Navigation2D = get_tree().current_scene.get_node("Rooms")
 onready var player: KinematicBody2D = get_tree().current_scene.get_node("Player")
 onready var navigation_agent: NavigationAgent2D = $NavigationAgent2D
 onready var path_timer: Timer = $PathTimer

@@ -311,9 +311,12 @@ tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"times": PoolRealArray( 1 ),
-"transitions": PoolRealArray( 1 ),
+"times": PoolRealArray( 0.9, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
 "values": [ {
+"args": [  ],
+"method": "switch_camera"
+}, {
 "args": [  ],
 "method": "queue_free"
 } ]
@@ -471,3 +474,7 @@ anims/dead = SubResource( 26 )
 anims/hurt = SubResource( 21 )
 anims/idle = SubResource( 15 )
 anims/move = SubResource( 16 )
+
+[node name="Camera2D" type="Camera2D" parent="." index="5"]
+current = true
+smoothing_enabled = true

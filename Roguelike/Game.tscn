@@ -1,8 +1,8 @@
 [gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://Rooms/Room0.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Characters/Player/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Game.gd" type="Script" id=3]
+[ext_resource path="res://Rooms.gd" type="Script" id=4]
 [ext_resource path="res://Assets/UI/health_ui.png" type="Texture" id=5]
 [ext_resource path="res://UI/UI.gd" type="Script" id=6]
 [ext_resource path="res://Assets/UI/progress bar.png" type="Texture" id=7]
@@ -25,12 +25,13 @@ tint_progress = Color( 0.498039, 0.0313726, 0.0313726, 1 )
 
 [node name="Tween" type="Tween" parent="UI/HealthBar"]
 
-[node name="Rooms" type="Node2D" parent="."]
-
-[node name="Room0" parent="Rooms" instance=ExtResource( 1 )]
+[node name="Rooms" type="Navigation2D" parent="."]
+script = ExtResource( 4 )
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
 position = Vector2( 158, 204 )
 health = 4
+
+[node name="Camera2D" type="Camera2D" parent="."]
 
 [connection signal="health_changed" from="Player" to="UI" method="_on_Player_health_changed"]

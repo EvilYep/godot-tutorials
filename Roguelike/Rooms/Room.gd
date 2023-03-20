@@ -7,7 +7,7 @@ const ENEMY_SCENES : Dictionary = {
 
 var num_enemies: int
 
-onready var tilemap: TileMap = $Navigation2D/TileMap2
+onready var tilemap: TileMap = $TileMap2
 onready var entrance: Node2D = $Entrance
 onready var door_container: Node2D = $Doors
 onready var enemy_positions_container: Node2D = $EnemyPositions
@@ -26,8 +26,8 @@ func _open_doors() -> void:
 
 func _seal_entrance() -> void:
 	for entry in entrance.get_children():
-		tilemap.set_cellv(tilemap.world_to_map(entry.position), 2)
-		tilemap.set_cellv(tilemap.world_to_map(entry.position) + Vector2.DOWN, 1)
+		tilemap.set_cellv(tilemap.world_to_map(entry.position), 47)
+		tilemap.set_cellv(tilemap.world_to_map(entry.position) + Vector2.DOWN, 35)
 
 func _spawn_enemies() -> void:
 	for enemy_position in enemy_positions_container.get_children():
@@ -49,5 +49,8 @@ func _on_enemy_killed() -> void:
 
 func _on_PlayerDetector_body_entered(_body: KinematicBody2D) -> void:
 	player_detector.queue_free()
-	_seal_entrance()
-	_spawn_enemies()
+	if num_enemies > 0:
+		_seal_entrance()
+		_spawn_enemies()
+	else:
+		_open_doors()
