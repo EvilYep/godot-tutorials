@@ -9,6 +9,8 @@ signal health_changed(new_hp)
 export(int) var acceleration := 40
 export(int) var max_speed := 100
 
+export(bool) var flying := false
+
 onready var state_machine: Node = get_node("StateMachine")
 onready var animated_sprite: AnimatedSprite = $AnimatedSprite
 
