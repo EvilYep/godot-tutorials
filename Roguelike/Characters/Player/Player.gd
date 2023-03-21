@@ -1,12 +1,12 @@
 extends Character
 class_name Player
 
-onready var sword: Node2D = $Sword
-onready var sword_hitbox: Area2D = $Sword/Node2D/Sprite/Hitbox
-onready var sword_animation_player: AnimationPlayer = sword.get_node("SwordAnimationPlayer")
-onready var charge_particles: Particles2D = $Sword/Node2D/Sprite/ChargeParticles
+onready var weapons: Node2D = $Weapons
+var current_weapon: Weapon
 
 var mouse_direction := Vector2.ZERO
+
+enum {UP, DOWN}
 
 #### ACCESSORS ####
 
@@ -15,10 +15,13 @@ func get_class() -> String: return "Player"
 
 #### BUILT-IN ####
 
+func _ready() -> void:
+	current_weapon = weapons.get_child(0)
+
 func _process(_delta: float) -> void:
 	mouse_direction = (get_global_mouse_position() - global_position).normalized()
 	animated_sprite.flip_h = mouse_direction.x < 0
-	_rotate_sword()
+	current_weapon.move(mouse_direction)
 
 #### LOGIC ####
 
@@ -28,24 +31,31 @@ func get_input() -> void:
 		int(Input.is_action_pressed("ui_down")) - int(Input.is_action_pressed("ui_up"))
 	)
 	
-	if Input.is_action_just_pressed("attack") and not sword_animation_player.is_playing():
-		sword_animation_player.play("charge")
-	elif Input.is_action_just_released("attack"):
-		if sword_animation_player.is_playing() and sword_animation_player.current_animation == "charge":
-			sword_animation_player.play("attack")
-		elif charge_particles.emitting == true:
-			sword_animation_player.play("charged_attack")
+	if not current_weapon.is_busy():
+		if Input.is_action_just_released("previous_weapon"):
+			switch_weapon(UP)
+		if Input.is_action_just_released("next_weapon"):
+			switch_weapon(DOWN)
+	
+	current_weapon.get_input()
+
+func switch_weapon(direction: int) -> void:
+	var index: int = current_weapon.get_index()
+	if direction == UP:
+		index -= 1
+		if index < 0:
+			index = weapons.get_child_count() - 1
+	else:
+		index += 1
+		if index > weapons.get_child_count() - 1:
+			index = 0
+	
+	current_weapon.hide()
+	current_weapon = weapons.get_child(index)
+	current_weapon.show()
 
 func cancel_attack() -> void:
-	sword_animation_player.play("cancel_attack")
-
-func _rotate_sword() -> void:
-	sword.rotation = mouse_direction.angle()
-	sword_hitbox.knockback_direction = mouse_direction
-	if sword.scale.y == 1 and mouse_direction.x < 0:
-		sword.scale.y = -1
-	if sword.scale.y == -1 and mouse_direction.x > 0:
-		sword.scale.y = 1
+	current_weapon.cancel_attack()
 
 func switch_camera() -> void:
 	var main_scene_camera = get_tree().current_scene.get_node("Camera2D")

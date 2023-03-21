@@ -1,0 +1,92 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://Weapons/WeaponHitbox.gd" type="Script" id=1]
+[ext_resource path="res://Weapons/Weapon.gd" type="Script" id=2]
+
+[sub_resource type="Shader" id=27]
+code = "shader_type canvas_item;
+
+uniform bool active = false;
+
+void fragment() {
+	vec4 base_color = texture(TEXTURE, UV);
+	//vec4 c_white = vec4(base_color.r * 2.0, base_color.g * 2.0, base_color.b * 2.0, base_color.a);
+	vec4 c_white = vec4(1.0, 1.0, 1.0, base_color.a);
+	vec4 flash_color = base_color * float(!active) + c_white * float(active);
+	COLOR = flash_color;
+}"
+
+[sub_resource type="ShaderMaterial" id=28]
+shader = SubResource( 27 )
+shader_param/active = false
+
+[sub_resource type="ParticlesMaterial" id=29]
+flag_disable_z = true
+spread = 180.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 15.0
+initial_velocity_random = 0.3
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+tangential_accel = 80.0
+tangential_accel_random = 0.2
+
+[sub_resource type="Animation" id=30]
+resource_name = "attack"
+tracks/0/type = "value"
+tracks/0/path = NodePath("AnimationPlayer:reset_on_save")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+
+[sub_resource type="Animation" id=31]
+resource_name = "cancel_attack"
+
+[sub_resource type="Animation" id=32]
+resource_name = "charge"
+
+[sub_resource type="Animation" id=33]
+resource_name = "strong_attack"
+
+[node name="Weapon" type="Node2D"]
+script = ExtResource( 2 )
+
+[node name="Node2D" type="Node2D" parent="."]
+rotation = -1.5708
+
+[node name="Sprite" type="Sprite" parent="Node2D"]
+material = SubResource( 28 )
+position = Vector2( 7, 3 )
+rotation = -0.785398
+offset = Vector2( 5, -4 )
+
+[node name="Hitbox" type="Area2D" parent="Node2D/Sprite"]
+collision_layer = 0
+collision_mask = 12
+script = ExtResource( 1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/Sprite/Hitbox"]
+position = Vector2( 4.94973, -3.53551 )
+rotation = 0.785398
+
+[node name="ChargeParticles" type="Particles2D" parent="Node2D/Sprite"]
+position = Vector2( 4.94973, -3.53551 )
+emitting = false
+amount = 15
+lifetime = 0.6
+process_material = SubResource( 29 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/attack = SubResource( 30 )
+anims/cancel_attack = SubResource( 31 )
+anims/charge = SubResource( 32 )
+anims/strong_attack = SubResource( 33 )
+
+[connection signal="area_entered" from="Node2D/Sprite/Hitbox" to="Node2D/Sprite/Hitbox" method="_on_Hitbox_area_entered"]
