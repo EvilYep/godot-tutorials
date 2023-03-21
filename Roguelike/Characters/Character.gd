@@ -41,10 +41,11 @@ func move() -> void:
 	velocity = velocity.limit_length(max_speed)
 
 func take_damage(damage: int, knockback_direction: Vector2, knockback_force: int) -> void:
-	self.health -= damage
-	if health > 0:
-		state_machine.set_state(state_machine.states.hurt)
-		velocity += knockback_direction * knockback_force
-	else:
-		state_machine.set_state(state_machine.states.dead)
-		velocity += knockback_direction * knockback_force * 2
+	if state_machine.state != state_machine.states.hurt and state_machine.state != state_machine.states.dead:
+		self.health -= damage
+		if health > 0:
+			state_machine.set_state(state_machine.states.hurt)
+			velocity += knockback_direction * knockback_force
+		else:
+			state_machine.set_state(state_machine.states.dead)
+			velocity += knockback_direction * knockback_force * 2

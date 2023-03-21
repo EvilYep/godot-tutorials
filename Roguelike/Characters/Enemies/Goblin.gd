@@ -9,6 +9,7 @@ const MIN_DISTANCE_TO_PLAYER := 40
 export(int) var projectile_speed := 150
 
 onready var attack_timer: Timer = $AttackTimer
+onready var aim_raycast: RayCast2D = $AimRayCast
 
 var distance_to_player : float
 var can_attack := true
@@ -34,7 +35,8 @@ func _on_PathTimer_timeout() -> void:
 		elif distance_to_player < MIN_DISTANCE_TO_PLAYER:
 			_get_path_to_move_away_from_player()
 		else: 
-			if can_attack:
+			aim_raycast.cast_to = player.position - global_position
+			if can_attack and state_machine.state == state_machine.states.idle and not aim_raycast.is_colliding():
 				can_attack = false
 				_throw_knife()
 				attack_timer.start()
