@@ -27,7 +27,7 @@ func chase() -> void:
 	if path:
 		var vector_to_next_point: Vector2 = path[0] - global_position
 		var distance_to_next_point: float = vector_to_next_point.length()
-		if distance_to_next_point < 1:
+		if distance_to_next_point < 3:
 			path.remove(0)
 			if not path:
 				return
@@ -35,13 +35,16 @@ func chase() -> void:
 		
 		animated_sprite.flip_h = vector_to_next_point.x < 0
 
+func _get_path_to_player() -> void:
+	path = navigation.get_simple_path(global_position, player.position)
+
 #### INPUTS ####
 
 #### SIGNAL RESPONSES ####
 
 func _on_PathTimer_timeout() -> void:
 	if is_instance_valid(player):
-		path = navigation.get_simple_path(global_position, player.position)
+		_get_path_to_player()
 	else:
 		path_timer.stop()
 		path = []

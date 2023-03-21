@@ -2,7 +2,8 @@ extends Node2D
 
 const SPAWN_EXPLOSION_SCENE : PackedScene = preload("res://Characters/Enemies/SpawnExplosion.tscn")
 const ENEMY_SCENES : Dictionary = {
-	"FLYING_CREATURE": preload("res://Characters/Enemies/FlyingCreature.tscn")
+	"FLYING_CREATURE": preload("res://Characters/Enemies/FlyingCreature.tscn"),
+	"GOBLIN": preload("res://Characters/Enemies/Goblin.tscn")
 }
 
 var num_enemies: int
@@ -31,7 +32,11 @@ func _seal_entrance() -> void:
 
 func _spawn_enemies() -> void:
 	for enemy_position in enemy_positions_container.get_children():
-		var enemy: KinematicBody2D = ENEMY_SCENES.FLYING_CREATURE.instance()
+		var enemy: KinematicBody2D
+		if randi() % 2 == 0:
+			enemy = ENEMY_SCENES.FLYING_CREATURE.instance()
+		else:
+			enemy = ENEMY_SCENES.GOBLIN.instance()
 		var __ = enemy.connect("tree_exited", self, "_on_enemy_killed")
 		enemy.position = enemy_position.position
 		call_deferred("add_child", enemy)
