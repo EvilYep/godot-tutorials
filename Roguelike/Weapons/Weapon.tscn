@@ -17,6 +17,7 @@ void fragment() {
 }"
 
 [sub_resource type="ShaderMaterial" id=28]
+resource_local_to_scene = true
 shader = SubResource( 27 )
 shader_param/active = false
 
@@ -33,18 +34,6 @@ tangential_accel_random = 0.2
 
 [sub_resource type="Animation" id=30]
 resource_name = "attack"
-tracks/0/type = "value"
-tracks/0/path = NodePath("AnimationPlayer:reset_on_save")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ true ]
-}
 
 [sub_resource type="Animation" id=31]
 resource_name = "cancel_attack"
@@ -89,4 +78,14 @@ anims/cancel_attack = SubResource( 31 )
 anims/charge = SubResource( 32 )
 anims/strong_attack = SubResource( 33 )
 
+[node name="PlayerDetector" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetector"]
+
+[node name="Tween" type="Tween" parent="."]
+
 [connection signal="area_entered" from="Node2D/Sprite/Hitbox" to="Node2D/Sprite/Hitbox" method="_on_Hitbox_area_entered"]
+[connection signal="body_entered" from="PlayerDetector" to="." method="_on_PlayerDetector_body_entered"]
+[connection signal="tween_completed" from="Tween" to="." method="_on_Tween_tween_completed"]

@@ -1,9 +1,13 @@
 extends Node2D
 class_name Weapon, "res://Assets/weapon_icon.png"
 
+export(bool) var on_floor := false
+
 onready var animation_player: AnimationPlayer = $AnimationPlayer
 onready var charge_particles: Particles2D = $Node2D/Sprite/ChargeParticles
 onready var hitbox: Area2D = $Node2D/Sprite/Hitbox
+onready var player_detector: Area2D = $PlayerDetector
+onready var tween: Tween = $Tween
 
 #### ACCESSORS ####
 
@@ -13,7 +17,9 @@ func get_class() -> String: return "Weapon"
 #### BUILT-IN ####
 
 func _ready() -> void:
-	pass
+	if not on_floor:
+		player_detector.set_collision_mask_bit(0, false)
+		player_detector.set_collision_mask_bit(1, false)
 
 #### VIRTUALS ####
 
@@ -43,6 +49,27 @@ func cancel_attack() -> void:
 func is_busy() -> bool:
 	return animation_player.is_playing() or charge_particles.emitting == true
 
+func interpolate_pos(initial_pos: Vector2, final_pos: Vector2) -> void:
+	var __ = tween.interpolate_property(self, "position", initial_pos, final_pos, 0.8, Tween.TRANS_QUART, Tween.EASE_OUT)
+	assert(__)
+	__ = tween.start()
+	assert(__)
+	player_detector.set_collision_mask_bit(0, true)
+
 #### INPUTS ####
 
 #### SIGNAL RESPONSES ####
+
+func _on_PlayerDetector_body_entered(body: KinematicBody2D) -> void:
+	if body != null:
+		player_detector.set_collision_mask_bit(0, false)
+		player_detector.set_collision_mask_bit(1, false)
+		body.pick_up_weapon(self)
+		position = Vector2.ZERO
+	else:
+		var __ = tween.stop_all()
+		assert(__)
+		player_detector.set_collision_mask_bit(1, true)
+
+func _on_Tween_tween_completed(_object: Object, _key: NodePath) -> void:
+	player_detector.set_collision_mask_bit(1, true)

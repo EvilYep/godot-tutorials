@@ -312,7 +312,7 @@ anims/move = SubResource( 16 )
 
 [node name="Weapons" type="Node2D" parent="." index="4"]
 
-[node name="Weapon" parent="Weapons" index="0" instance=ExtResource( 6 )]
+[node name="Sword" parent="Weapons" index="0" instance=ExtResource( 6 )]
 
 [node name="Hammer" parent="Weapons" index="1" instance=ExtResource( 7 )]
 visible = false

@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Rooms/Room.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Rooms/Door.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Weapons/Axe.tscn" type="PackedScene" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 32, 24 )
@@ -20,9 +21,13 @@ tile_data = PoolIntArray( 65545, 2, 0, 65546, 2, 0, 196619, 9, 0, 196620, 10, 0,
 [node name="Door" parent="Doors" index="0" instance=ExtResource( 2 )]
 position = Vector2( 80, 16 )
 
+[node name="PlayerSpawnPos" type="Position2D" parent="." index="7"]
+position = Vector2( 128, 144 )
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetector" index="0"]
 position = Vector2( 80, 56 )
 shape = SubResource( 1 )
 
-[node name="PlayerSpawnPos" type="Position2D" parent="." index="7"]
-position = Vector2( 128, 144 )
+[node name="Axe" parent="." index="9" instance=ExtResource( 3 )]
+position = Vector2( 216, 80 )
+on_floor = true
