@@ -4,6 +4,7 @@ class_name Player
 onready var sword: Node2D = $Sword
 onready var sword_hitbox: Area2D = $Sword/Node2D/Sprite/Hitbox
 onready var sword_animation_player: AnimationPlayer = sword.get_node("SwordAnimationPlayer")
+onready var charge_particles: Particles2D = $Sword/Node2D/Sprite/ChargeParticles
 
 var mouse_direction := Vector2.ZERO
 
@@ -28,7 +29,15 @@ func get_input() -> void:
 	)
 	
 	if Input.is_action_just_pressed("attack") and not sword_animation_player.is_playing():
-		sword_animation_player.play("attack")
+		sword_animation_player.play("charge")
+	elif Input.is_action_just_released("attack"):
+		if sword_animation_player.is_playing() and sword_animation_player.current_animation == "charge":
+			sword_animation_player.play("attack")
+		elif charge_particles.emitting == true:
+			sword_animation_player.play("charged_attack")
+
+func cancel_attack() -> void:
+	sword_animation_player.play("cancel_attack")
 
 func _rotate_sword() -> void:
 	sword.rotation = mouse_direction.angle()
