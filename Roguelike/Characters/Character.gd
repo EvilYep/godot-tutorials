@@ -1,6 +1,8 @@
 extends KinematicBody2D
 class_name Character, "res://Assets/knight_icon.png"
 
+const HIT_FX_SCENE := preload("res://FX/HitEffect.tscn")
+
 const FRICTION := 0.15
 
 export(int) var health := 2 setget set_health
@@ -44,6 +46,7 @@ func move() -> void:
 
 func take_damage(damage: int, knockback_direction: Vector2, knockback_force: int) -> void:
 	if state_machine.state != state_machine.states.hurt and state_machine.state != state_machine.states.dead:
+		_spawn_hit_fx()
 		self.health -= damage
 		if health > 0:
 			state_machine.set_state(state_machine.states.hurt)
@@ -51,3 +54,7 @@ func take_damage(damage: int, knockback_direction: Vector2, knockback_force: int
 		else:
 			state_machine.set_state(state_machine.states.dead)
 			velocity += knockback_direction * knockback_force * 2
+
+func _spawn_hit_fx() -> void:
+	var hit_fx = HIT_FX_SCENE.instance()
+	add_child(hit_fx)

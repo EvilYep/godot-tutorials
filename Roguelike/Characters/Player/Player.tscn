@@ -286,6 +286,20 @@ tracks/1/keys = {
 "update": 1,
 "values": [ 0, 1, 2, 3, 4, 5 ]
 }
+tracks/2/type = "method"
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.6 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "spawn_dust"
+} ]
+}
 
 [node name="Player" instance=ExtResource( 1 )]
 collision_layer = 2
@@ -320,3 +334,6 @@ visible = false
 [node name="Camera2D" type="Camera2D" parent="." index="5"]
 current = true
 smoothing_enabled = true
+
+[node name="DustPosition" type="Position2D" parent="." index="6"]
+position = Vector2( 0, 6 )

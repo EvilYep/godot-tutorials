@@ -1,6 +1,10 @@
 extends Character
 class_name Player
 
+const DUST_SCENE := preload("res://FX/Dust.tscn")
+onready var dust_position: Position2D = $DustPosition
+
+onready var parent: Node2D = get_parent()
 onready var weapons: Node2D = $Weapons
 var current_weapon: Weapon
 
@@ -78,6 +82,11 @@ func drop_weapon() -> void:
 
 func cancel_attack() -> void:
 	current_weapon.cancel_attack()
+
+func spawn_dust() -> void:
+	var dust := DUST_SCENE.instance()
+	dust.position = dust_position.global_position
+	parent.add_child_below_node(parent.get_child(get_index() - 1), dust)
 
 func switch_camera() -> void:
 	var main_scene_camera = get_tree().current_scene.get_node("Camera2D")
