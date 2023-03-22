@@ -20,7 +20,7 @@ func get_class() -> String: return "Player"
 #### BUILT-IN ####
 
 func _ready() -> void:
-	current_weapon = weapons.get_child(0)
+	_restore_saved_state()
 
 func _process(_delta: float) -> void:
 	mouse_direction = (get_global_mouse_position() - global_position).normalized()
@@ -45,6 +45,16 @@ func get_input() -> void:
 	
 	current_weapon.get_input()
 
+func _restore_saved_state() -> void:
+	self.health = SavedData.hp
+	for weapon in SavedData.weapons:
+		weapon = weapon.duplicate()
+		weapon.hide()
+		weapon.position = Vector2.ZERO
+		weapons.add_child(weapon)
+	current_weapon = weapons.get_child(SavedData.equipped_weapon_index)
+	current_weapon.show()
+
 func switch_weapon(direction: int) -> void:
 	var index: int = current_weapon.get_index()
 	if direction == UP:
@@ -59,8 +69,11 @@ func switch_weapon(direction: int) -> void:
 	current_weapon.hide()
 	current_weapon = weapons.get_child(index)
 	current_weapon.show()
+	SavedData.equipped_weapon_index = index
 
 func pick_up_weapon(weapon: Weapon) -> void:
+	SavedData.weapons.append(weapon.duplicate())
+	SavedData.equipped_weapon_index = current_weapon.get_index()
 	weapon.get_parent().call_deferred("remove_child", weapon)
 	weapons.call_deferred("add_child", weapon)
 	weapon.set_deferred("owner", weapons)
@@ -69,6 +82,7 @@ func pick_up_weapon(weapon: Weapon) -> void:
 	current_weapon = weapon
 
 func drop_weapon() -> void:
+	SavedData.weapons.remove(current_weapon.get_index() - 1)
 	var weapon_to_drop: Weapon = current_weapon
 	switch_weapon(UP)
 	weapons.call_deferred("remove_child", weapon_to_drop)

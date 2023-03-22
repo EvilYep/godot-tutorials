@@ -48,6 +48,10 @@ func take_damage(damage: int, knockback_direction: Vector2, knockback_force: int
 	if state_machine.state != state_machine.states.hurt and state_machine.state != state_machine.states.dead:
 		_spawn_hit_fx()
 		self.health -= damage
+		
+		if name == "Player":
+			SavedData.hp = health
+		
 		if health > 0:
 			state_machine.set_state(state_machine.states.hurt)
 			velocity += knockback_direction * knockback_force
