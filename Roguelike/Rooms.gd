@@ -15,7 +15,8 @@ const ROOMS_WITH_WEAPON : Array = [
 	preload("res://Rooms/RoomWithWeapon1.tscn"),
 ]
 const SPECIAL_ROOMS : Array = [
-	preload("res://Rooms/SpecialRoom0.tscn")
+	preload("res://Rooms/SpecialRoom0.tscn"),
+	preload("res://Rooms/SpecialRoom1.tscn"),
 ]
 const END_ROOMS: Array = [
 	preload("res://Rooms/EndRoom0.tscn")

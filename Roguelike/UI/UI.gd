@@ -9,7 +9,7 @@ onready var health_bar: TextureProgress = $HealthBar
 onready var health_bar_tween: Tween = $HealthBar/Tween
 
 func _ready() -> void:
-	max_hp = player.health
+	max_hp = player.max_hp
 	_update_health_bar(100)
 
 func _update_health_bar(new_value:int) -> void:

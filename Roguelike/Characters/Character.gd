@@ -6,6 +6,7 @@ const HIT_FX_SCENE := preload("res://FX/HitEffect.tscn")
 const FRICTION := 0.15
 
 export(int) var health := 2 setget set_health
+export(int) var max_hp := 2
 signal health_changed(new_hp)
 
 export(int) var acceleration := 40
@@ -25,8 +26,8 @@ func is_class(value: String): return value == "Character" or .is_class(value)
 func get_class() -> String: return "Character"
 
 func set_health(new_hp: int) -> void:
-	health = new_hp
-	emit_signal("health_changed", new_hp)
+	health = clamp(new_hp, 0, max_hp)
+	emit_signal("health_changed", health)
 
 #### BUILT-IN ####
 
