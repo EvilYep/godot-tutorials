@@ -1,4 +1,5 @@
 extends Node2D
+class_name CustomRoom
 
 const SPAWN_EXPLOSION_SCENE : PackedScene = preload("res://Characters/Enemies/SpawnExplosion.tscn")
 const ENEMY_SCENES : Dictionary = {
@@ -58,4 +59,5 @@ func _on_PlayerDetector_body_entered(_body: KinematicBody2D) -> void:
 		_seal_entrance()
 		_spawn_enemies()
 	else:
+		_seal_entrance()
 		_open_doors()
