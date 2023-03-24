@@ -49,9 +49,9 @@ func _restore_saved_state() -> void:
 	self.health = SavedData.hp
 	for weapon in SavedData.weapons:
 		weapon = weapon.duplicate()
-		weapon.hide()
 		weapon.position = Vector2.ZERO
 		weapons.add_child(weapon)
+		weapon.hide()
 	current_weapon = weapons.get_child(SavedData.equipped_weapon_index)
 	current_weapon.show()
 

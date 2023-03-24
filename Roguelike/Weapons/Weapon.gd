@@ -8,6 +8,11 @@ onready var charge_particles: Particles2D = $Node2D/Sprite/ChargeParticles
 onready var hitbox: Area2D = $Node2D/Sprite/Hitbox
 onready var player_detector: Area2D = $PlayerDetector
 onready var tween: Tween = $Tween
+onready var cool_down_timer: Timer = $CoolDownTimer
+onready var ui: CanvasLayer = $UI
+onready var ability_icon: TextureProgress = $UI/AbilityIcon
+
+var can_active_ability := true
 
 #### ACCESSORS ####
 
@@ -33,6 +38,11 @@ func get_input() -> void:
 			animation_player.play("attack")
 		elif charge_particles.emitting == true:
 			animation_player.play("strong_attack")
+	elif Input.is_action_just_pressed("active_ability") and animation_player.has_animation("active_ability") and not is_busy() and can_active_ability:
+		can_active_ability = false
+		cool_down_timer.start()
+		ui.recharge_active_ability(cool_down_timer.wait_time)
+		animation_player.play("active_ability")
 
 func move(mouse_direction: Vector2) -> void:
 	if not animation_player.is_playing() or animation_player.current_animation == "charge":
@@ -56,6 +66,14 @@ func interpolate_pos(initial_pos: Vector2, final_pos: Vector2) -> void:
 	assert(__)
 	player_detector.set_collision_mask_bit(0, true)
 
+func show() -> void:
+	ability_icon.show()
+	.show()
+
+func hide() -> void:
+	ability_icon.hide()
+	.hide()
+
 #### INPUTS ####
 
 #### SIGNAL RESPONSES ####
@@ -73,3 +91,6 @@ func _on_PlayerDetector_body_entered(body: KinematicBody2D) -> void:
 
 func _on_Tween_tween_completed(_object: Object, _key: NodePath) -> void:
 	player_detector.set_collision_mask_bit(1, true)
+
+func _on_CoolDownTimer_timeout() -> void:
+	can_active_ability = true
