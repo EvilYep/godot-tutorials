@@ -5,8 +5,8 @@ const HIT_FX_SCENE := preload("res://FX/HitEffect.tscn")
 
 const FRICTION := 0.15
 
-export(int) var health := 2 setget set_health
 export(int) var max_hp := 2
+export(int) var health := 2 setget set_health
 signal health_changed(new_hp)
 
 export(int) var acceleration := 40

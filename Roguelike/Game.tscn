@@ -29,7 +29,6 @@ tint_progress = Color( 0.498039, 0.0313726, 0.0313726, 1 )
 script = ExtResource( 4 )
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
-health = 4
 
 [node name="Camera2D" type="Camera2D" parent="."]
 

@@ -17,7 +17,7 @@ func get_class() -> String: return "Enemy"
 #### BUILT-IN ####
 
 func _ready() -> void:
-	pass
+	var __ = connect("tree_exited", get_parent(), "_on_enemy_killed")
 
 #### VIRTUALS ####
 
