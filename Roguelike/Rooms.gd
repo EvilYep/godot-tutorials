@@ -35,7 +35,7 @@ onready var player : KinematicBody2D = get_parent().get_node("Player")
 
 func _ready() -> void:
 	SavedData.num_floor += 1
-	if SavedData.num_floor == 2:
+	if SavedData.num_floor == 3:
 		num_levels = 3
 	_spawn_rooms()
 
@@ -50,11 +50,11 @@ func _spawn_rooms() -> void:
 			room = SPAWN_ROOMS[randi() % SPAWN_ROOMS.size()].instance()
 			player.position = room.get_node("PlayerSpawnPos").position
 		else:
-			if SavedData.num_floor == 2:
-				room = SLIME_BOSS_ROOMS.instance()
+			if i == num_levels - 1:
+				room = END_ROOMS[randi() % END_ROOMS.size()].instance()
 			else:
-				if i == num_levels - 1:
-					room = END_ROOMS[randi() % END_ROOMS.size()].instance()
+				if SavedData.num_floor == 3:
+					room = SLIME_BOSS_ROOMS.instance()
 				else:
 					if (randi() % 3 == 0 and not special_room_spawned) or (i == num_levels - 2 and not special_room_spawned):
 						room = SPECIAL_ROOMS[randi() % SPECIAL_ROOMS.size()].instance()

@@ -8,6 +8,10 @@ onready var parent: Node2D = get_parent()
 onready var weapons: Node2D = $Weapons
 var current_weapon: Weapon
 
+signal weapon_switched(prev_index, new_index)
+signal weapon_picked_up(weapon_texture)
+signal weapon_dropped(index)
+
 var mouse_direction := Vector2.ZERO
 
 enum {UP, DOWN}
@@ -20,6 +24,7 @@ func get_class() -> String: return "Player"
 #### BUILT-IN ####
 
 func _ready() -> void:
+	emit_signal("weapon_picked_up", weapons.get_child(0).get_texture())
 	_restore_saved_state()
 
 func _process(_delta: float) -> void:
@@ -52,11 +57,15 @@ func _restore_saved_state() -> void:
 		weapon.position = Vector2.ZERO
 		weapons.add_child(weapon)
 		weapon.hide()
+		emit_signal("weapon_picked_up", weapon.get_texture())
+		emit_signal("weapon_switched", weapons.get_child_count() - 2, weapons.get_child_count() - 1)
 	current_weapon = weapons.get_child(SavedData.equipped_weapon_index)
 	current_weapon.show()
+	emit_signal("weapon_switched", weapons.get_child_count() - 1, SavedData.equipped_weapon_index)
 
 func switch_weapon(direction: int) -> void:
-	var index: int = current_weapon.get_index()
+	var prev_index: int = current_weapon.get_index()
+	var index = prev_index
 	if direction == UP:
 		index -= 1
 		if index < 0:
@@ -70,21 +79,28 @@ func switch_weapon(direction: int) -> void:
 	current_weapon = weapons.get_child(index)
 	current_weapon.show()
 	SavedData.equipped_weapon_index = index
+	emit_signal("weapon_switched", prev_index, index)
 
 func pick_up_weapon(weapon: Weapon) -> void:
 	SavedData.weapons.append(weapon.duplicate())
-	SavedData.equipped_weapon_index = current_weapon.get_index()
+	var prev_index := SavedData.equipped_weapon_index
+	var new_index := weapons.get_child_count()
+	SavedData.equipped_weapon_index = new_index
 	weapon.get_parent().call_deferred("remove_child", weapon)
 	weapons.call_deferred("add_child", weapon)
 	weapon.set_deferred("owner", weapons)
 	current_weapon.hide()
 	current_weapon.cancel_attack()
 	current_weapon = weapon
+	emit_signal("weapon_picked_up", weapon.get_texture())
+	emit_signal("weapon_switched", prev_index, new_index)
 
 func drop_weapon() -> void:
 	SavedData.weapons.remove(current_weapon.get_index() - 1)
 	var weapon_to_drop: Weapon = current_weapon
 	switch_weapon(UP)
+	emit_signal("weapon_dropped", weapon_to_drop.get_index())
+	
 	weapons.call_deferred("remove_child", weapon_to_drop)
 	get_parent().call_deferred("add_child", weapon_to_drop)
 	weapon_to_drop.set_owner(get_parent())
