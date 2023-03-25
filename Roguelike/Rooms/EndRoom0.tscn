@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Rooms/Room.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Rooms/Misc/Stairs.tscn" type="PackedScene" id=2]
+[ext_resource path="res://FX/Torch.tscn" type="PackedScene" id=3]
 
 [node name="EndRoom0" instance=ExtResource( 1 )]
 
@@ -22,3 +23,15 @@ position = Vector2( 120, 120 )
 
 [node name="Stairs" parent="." index="8" instance=ExtResource( 2 )]
 position = Vector2( 104, 40 )
+
+[node name="Torch" parent="." index="9" instance=ExtResource( 3 )]
+position = Vector2( 88, 24 )
+
+[node name="Torch2" parent="." index="10" instance=ExtResource( 3 )]
+position = Vector2( 136, 24 )
+
+[node name="Torch3" parent="." index="11" instance=ExtResource( 3 )]
+position = Vector2( 184, 72 )
+
+[node name="Torch4" parent="." index="12" instance=ExtResource( 3 )]
+position = Vector2( 40, 72 )
