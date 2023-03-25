@@ -26,7 +26,7 @@ func is_class(value: String): return value == "Character" or .is_class(value)
 func get_class() -> String: return "Character"
 
 func set_health(new_hp: int) -> void:
-	health = clamp(new_hp, 0, max_hp)
+	health = int(clamp(float(new_hp), 0.0, float(max_hp)))
 	emit_signal("health_changed", health)
 
 #### BUILT-IN ####
