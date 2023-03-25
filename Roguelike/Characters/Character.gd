@@ -52,6 +52,9 @@ func take_damage(damage: int, knockback_direction: Vector2, knockback_force: int
 		
 		if name == "Player":
 			SavedData.hp = health
+			if health == 0:
+				SceneTransistor.start_transition_to("res://Game.tscn")
+				SavedData.reset_data()
 		
 		if health > 0:
 			state_machine.set_state(state_machine.states.hurt)
