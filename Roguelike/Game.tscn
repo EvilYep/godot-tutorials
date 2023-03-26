@@ -14,6 +14,7 @@ border_width_right = 2
 border_width_bottom = 2
 
 [node name="Game" type="Node2D"]
+position = Vector2( -1, 0 )
 script = ExtResource( 3 )
 
 [node name="UI" type="CanvasLayer" parent="."]

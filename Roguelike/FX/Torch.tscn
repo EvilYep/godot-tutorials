@@ -39,6 +39,8 @@ animations = [ {
 texture = ExtResource( 1 )
 color = Color( 0.862745, 0.423529, 0.101961, 1 )
 shadow_enabled = true
+shadow_filter = 5
+shadow_filter_smooth = 1.5
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 7 )
