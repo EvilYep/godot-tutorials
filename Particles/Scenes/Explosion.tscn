@@ -1,0 +1,55 @@
+[gd_scene load_steps=10 format=3 uid="uid://dirx6eiifrhc3"]
+
+[ext_resource type="Texture2D" uid="uid://dab6tiyxcsoj5" path="res://Assets/Flame.png" id="1_x4w45"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_fq4yk"]
+blend_mode = 1
+
+[sub_resource type="Gradient" id="Gradient_xc2vg"]
+offsets = PackedFloat32Array(0, 0.136465, 0.899038, 0.959135, 1)
+colors = PackedColorArray(1, 0.690196, 0, 0, 1, 0.690196, 0, 1, 1, 0.247059, 0, 1, 1, 0.247059, 0, 0.352941, 1, 0.247059, 0, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_ytmbp"]
+gradient = SubResource("Gradient_xc2vg")
+width = 100
+
+[sub_resource type="Curve" id="Curve_gjilo"]
+max_value = 100.0
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.892617, 20.9091), 0.0, 0.0, 0, 0, Vector2(1, 100), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_3jx40"]
+curve = SubResource("Curve_gjilo")
+
+[sub_resource type="Curve" id="Curve_i04qj"]
+_data = [Vector2(0, 0.254545), 0.0, 0.0, 0, 0, Vector2(0.695749, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_my4aa"]
+curve = SubResource("Curve_i04qj")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_785w2"]
+lifetime_randomness = 0.3
+direction = Vector3(0, -1, 0)
+spread = 180.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 475.0
+initial_velocity_max = 525.0
+angular_velocity_max = 100.0
+damping_min = 300.0
+damping_max = 300.0
+damping_curve = SubResource("CurveTexture_3jx40")
+angle_min = 360.0
+angle_max = 720.0
+scale_min = 0.5
+scale_curve = SubResource("CurveTexture_my4aa")
+color_ramp = SubResource("GradientTexture1D_ytmbp")
+
+[node name="GPUParticles2D" type="GPUParticles2D"]
+material = SubResource("CanvasItemMaterial_fq4yk")
+emitting = false
+amount = 32
+process_material = SubResource("ParticleProcessMaterial_785w2")
+texture = ExtResource("1_x4w45")
+one_shot = true
+explosiveness = 0.7

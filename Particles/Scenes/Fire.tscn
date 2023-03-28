@@ -5,15 +5,15 @@
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_fq4yk"]
 blend_mode = 1
 
-[sub_resource type="Gradient" id="Gradient_ifjng"]
+[sub_resource type="Gradient" id="Gradient_i2u7p"]
 offsets = PackedFloat32Array(0, 0.136465, 0.825503, 0.894855, 1)
 colors = PackedColorArray(1, 0.690196, 0, 0, 1, 0.690196, 0, 1, 1, 0.247059, 0, 1, 1, 0.247059, 0, 0.352941, 1, 0.247059, 0, 0)
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_g7jl7"]
-gradient = SubResource("Gradient_ifjng")
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_rulvn"]
+gradient = SubResource("Gradient_i2u7p")
 width = 100
 
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_k75o2"]
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_te0lu"]
 lifetime_randomness = 0.3
 direction = Vector3(0, -1, 0)
 spread = 30.0
@@ -24,11 +24,11 @@ angular_velocity_max = 100.0
 angle_min = 360.0
 angle_max = 720.0
 scale_min = 0.5
-color_ramp = SubResource("GradientTexture1D_g7jl7")
+color_ramp = SubResource("GradientTexture1D_rulvn")
 
 [node name="GPUParticles2D" type="GPUParticles2D"]
 material = SubResource("CanvasItemMaterial_fq4yk")
 amount = 16
-process_material = SubResource("ParticleProcessMaterial_k75o2")
+process_material = SubResource("ParticleProcessMaterial_te0lu")
 texture = ExtResource("1_hjmh3")
 explosiveness = 0.1
