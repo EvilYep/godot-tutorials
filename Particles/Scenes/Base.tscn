@@ -1,0 +1,47 @@
+[gd_scene load_steps=6 format=3 uid="uid://ci4cxmttfl4cp"]
+
+[ext_resource type="Texture2D" uid="uid://bqvmsaxp8eve5" path="res://Assets/Archaelogists.png" id="1_kqc3t"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6ak0a"]
+atlas = ExtResource("1_kqc3t")
+region = Rect2(0, 0, 46, 47)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y2rqx"]
+atlas = ExtResource("1_kqc3t")
+region = Rect2(46, 0, 46, 47)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yhw80"]
+atlas = ExtResource("1_kqc3t")
+region = Rect2(92, 0, 46, 47)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3p2yq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6ak0a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y2rqx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yhw80")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_right = 640.0
+offset_bottom = 360.0
+color = Color(0, 0, 0, 1)
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+position = Vector2(310, 149)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(298, 165)
+sprite_frames = SubResource("SpriteFrames_3p2yq")
+frame_progress = 0.670039

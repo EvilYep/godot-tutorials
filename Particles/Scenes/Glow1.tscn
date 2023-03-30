@@ -1,0 +1,50 @@
+[gd_scene load_steps=7 format=3 uid="uid://cn7eeouemw4fy"]
+
+[ext_resource type="PackedScene" uid="uid://ci4cxmttfl4cp" path="res://Scenes/Base.tscn" id="1_xk8p1"]
+[ext_resource type="Texture2D" uid="uid://c1nu82noxxqka" path="res://Assets/floaty_64.png" id="2_imnck"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_o8yhu"]
+blend_mode = 1
+particles_animation = true
+particles_anim_h_frames = 7
+particles_anim_v_frames = 7
+particles_anim_loop = false
+
+[sub_resource type="Gradient" id="Gradient_msdbv"]
+offsets = PackedFloat32Array(0, 0.263566, 0.546512)
+colors = PackedColorArray(0.370511, 0.00126184, 0.514981, 1, 0.580392, 0.00392157, 0.796078, 1, 0.270469, 0.887777, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_4qnd4"]
+gradient = SubResource("Gradient_msdbv")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_g8c08"]
+emission_shape = 1
+emission_sphere_radius = 5.0
+particle_flag_disable_z = true
+spread = 180.0
+gravity = Vector3(0, -100, 0)
+initial_velocity_min = 50.0
+initial_velocity_max = 50.0
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+angle_min = 100.0
+angle_max = 200.0
+color_ramp = SubResource("GradientTexture1D_4qnd4")
+hue_variation_min = 0.01
+hue_variation_max = 0.05
+anim_speed_min = 1.0
+anim_speed_max = 1.0
+
+[node name="Node2D" instance=ExtResource("1_xk8p1")]
+
+[node name="GPUParticles2D" parent="." index="1"]
+material = SubResource("CanvasItemMaterial_o8yhu")
+position = Vector2(309, 149)
+process_material = SubResource("ParticleProcessMaterial_g8c08")
+texture = ExtResource("2_imnck")
+lifetime = 2.0
+explosiveness = 0.15
+
+[node name="AnimatedSprite2D" parent="." index="2"]
+autoplay = "default"
+frame_progress = 0.28341
