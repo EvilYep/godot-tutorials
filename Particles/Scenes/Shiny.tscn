@@ -1,0 +1,60 @@
+[gd_scene load_steps=11 format=3 uid="uid://lpci0xfgocg4"]
+
+[ext_resource type="PackedScene" uid="uid://ci4cxmttfl4cp" path="res://Scenes/Base.tscn" id="1_671pk"]
+[ext_resource type="Texture2D" uid="uid://57qvsba13733" path="res://Assets/offset_glow.png" id="2_40t0b"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_nmd3j"]
+blend_mode = 1
+
+[sub_resource type="Curve" id="Curve_aaglr"]
+min_value = -360.0
+max_value = 360.0
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 360), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_2n5q8"]
+width = 2048
+curve = SubResource("Curve_aaglr")
+
+[sub_resource type="Gradient" id="Gradient_wycin"]
+offsets = PackedFloat32Array(0, 0.0852713, 0.763566, 1)
+colors = PackedColorArray(0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_tfpv1"]
+gradient = SubResource("Gradient_wycin")
+
+[sub_resource type="Curve" id="Curve_kq1km"]
+_data = [Vector2(0.00346021, 0.345455), 0.0, 0.0, 0, 0, Vector2(0.152249, 0.754545), 2.72832, 2.72832, 0, 0, Vector2(0.875432, 0.9), -1.5013, -1.5013, 0, 0, Vector2(1, 0.718182), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_ulfrb"]
+width = 2048
+curve = SubResource("Curve_kq1km")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_15x11"]
+emission_shape = 1
+emission_sphere_radius = 5.0
+particle_flag_disable_z = true
+gravity = Vector3(0, -150, 0)
+angular_velocity_min = 0.1
+angular_velocity_max = 0.5
+angular_velocity_curve = SubResource("CurveTexture_2n5q8")
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+angle_min = 360.0
+angle_max = 720.0
+scale_min = 0.2
+scale_max = 0.8
+scale_curve = SubResource("CurveTexture_ulfrb")
+color_ramp = SubResource("GradientTexture1D_tfpv1")
+
+[node name="Node2D" instance=ExtResource("1_671pk")]
+
+[node name="GPUParticles2D" parent="." index="1"]
+modulate = Color(0.3, 1.55, 3, 1)
+material = SubResource("CanvasItemMaterial_nmd3j")
+process_material = SubResource("ParticleProcessMaterial_15x11")
+texture = ExtResource("2_40t0b")
+
+[node name="AnimatedSprite2D" parent="." index="2"]
+frame_progress = 0.55217
