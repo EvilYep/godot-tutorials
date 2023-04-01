@@ -1,0 +1,87 @@
+[gd_scene load_steps=12 format=3 uid="uid://drryv7h2d2mmy"]
+
+[ext_resource type="PackedScene" uid="uid://ci4cxmttfl4cp" path="res://Scenes/Base.tscn" id="1_gmk63"]
+[ext_resource type="Texture2D" uid="uid://djiggpqftxbw5" path="res://Assets/smoke_spritesheet.png" id="2_7spkf"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_d4aiq"]
+particles_animation = true
+particles_anim_h_frames = 4
+particles_anim_v_frames = 1
+particles_anim_loop = true
+
+[sub_resource type="Curve" id="Curve_x4ul4"]
+_data = [Vector2(0, 0), 0.0, 3.35204, 0, 0, Vector2(0.50519, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -3.25782, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_kl5gt"]
+width = 1024
+curve = SubResource("Curve_x4ul4")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_seo3u"]
+emission_shape = 3
+emission_box_extents = Vector3(10, 10, 1)
+particle_flag_disable_z = true
+gravity = Vector3(0, 0, 0)
+angular_velocity_min = 50.0
+angular_velocity_max = 100.0
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+angle_min = 360.0
+angle_max = 720.0
+scale_min = 0.01
+scale_max = 0.03
+scale_curve = SubResource("CurveTexture_kl5gt")
+hue_variation_min = 0.2
+hue_variation_max = 0.4
+anim_offset_max = 1.0
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_d7wvb"]
+particles_animation = true
+particles_anim_h_frames = 4
+particles_anim_v_frames = 1
+particles_anim_loop = true
+
+[sub_resource type="Curve" id="Curve_qveew"]
+_data = [Vector2(0, 0), 0.0, 3.35204, 0, 0, Vector2(0.50519, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -3.25782, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_nfybx"]
+width = 1024
+curve = SubResource("Curve_qveew")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_00a0r"]
+emission_shape = 3
+emission_box_extents = Vector3(10, 10, 1)
+particle_flag_disable_z = true
+gravity = Vector3(0, 0, 0)
+angular_velocity_min = 50.0
+angular_velocity_max = 100.0
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+angle_min = 360.0
+angle_max = 720.0
+scale_min = 0.02
+scale_max = 0.03
+scale_curve = SubResource("CurveTexture_nfybx")
+anim_offset_max = 1.0
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_syqla"]
+load_path = "res://.godot/imported/smoke_spritesheet.png-2a7cab78ba8182561da375f46bc7f62d.ctex"
+
+[node name="Node2D" instance=ExtResource("1_gmk63")]
+
+[node name="GPUParticles2D" parent="." index="1"]
+material = SubResource("CanvasItemMaterial_d4aiq")
+amount = 150
+process_material = SubResource("ParticleProcessMaterial_seo3u")
+texture = ExtResource("2_7spkf")
+
+[node name="GPUParticles2D2" type="GPUParticles2D" parent="." index="2"]
+material = SubResource("CanvasItemMaterial_d7wvb")
+position = Vector2(310, 149)
+amount = 100
+process_material = SubResource("ParticleProcessMaterial_00a0r")
+texture = SubResource("CompressedTexture2D_syqla")
+
+[node name="AnimatedSprite2D" parent="." index="3"]
+frame_progress = 0.514202
