@@ -1,0 +1,39 @@
+[gd_scene load_steps=8 format=3 uid="uid://bcdduc06hh83o"]
+
+[ext_resource type="Shader" path="res://Scenes/OfficialDocTuto.gdshader" id="1_cw1av"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_pou33"]
+fractal_octaves = 3
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_pf1wv"]
+seamless = true
+noise = SubResource("FastNoiseLite_pou33")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_4nfxb"]
+fractal_octaves = 3
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_j25jv"]
+seamless = true
+as_normal_map = true
+noise = SubResource("FastNoiseLite_4nfxb")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qkwwd"]
+render_priority = 0
+shader = ExtResource("1_cw1av")
+shader_parameter/noise = SubResource("NoiseTexture2D_pf1wv")
+shader_parameter/normalmap = SubResource("NoiseTexture2D_j25jv")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_by70c"]
+material = SubResource("ShaderMaterial_qkwwd")
+size = Vector2(10, 10)
+subdivide_width = 640
+subdivide_depth = 640
+
+[node name="MeshInstance3D" type="MeshInstance3D"]
+mesh = SubResource("PlaneMesh_by70c")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.151838, 1.15078, 0.0435738)
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.954209, 0.299141, 0, -0.299141, 0.954209, 0.0305429, 1.08751, 3.74984)
