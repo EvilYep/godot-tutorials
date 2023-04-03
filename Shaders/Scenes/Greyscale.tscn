@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://5yu53uhnhwm2"]
+
+[ext_resource type="PackedScene" uid="uid://b8r5dkyitwl3g" path="res://Scenes/BasicSceneToInheritFrom.tscn" id="1_ky4k8"]
+[ext_resource type="Shader" path="res://Scenes/shaders/greyscale.gdshader" id="2_vicr8"]
+[ext_resource type="Texture2D" uid="uid://ckyrrag6iksa8" path="res://icon.svg" id="3_uktyi"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ncefl"]
+shader = ExtResource("2_vicr8")
+
+[node name="Node2D" instance=ExtResource("1_ky4k8")]
+
+[node name="Camera2D" parent="." index="0"]
+position = Vector2(576, 320)
+
+[node name="ColorRect" parent="Camera2D/CanvasLayer" index="0"]
+material = SubResource("ShaderMaterial_ncefl")
+
+[node name="Icon" type="Sprite2D" parent="." index="1"]
+position = Vector2(280, 222)
+texture = ExtResource("3_uktyi")
+
+[node name="Icon2" type="Sprite2D" parent="." index="2"]
+position = Vector2(887, 437)
+texture = ExtResource("3_uktyi")
