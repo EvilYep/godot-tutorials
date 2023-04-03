@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bpqgtlkbolseh"]
+
+[ext_resource type="Script" path="res://Scenes/ParticleQueue.gd" id="1_plbs0"]
+
+[node name="ParticleQueue" type="Node2D"]
+script = ExtResource("1_plbs0")
