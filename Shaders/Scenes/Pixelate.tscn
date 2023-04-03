@@ -1,0 +1,43 @@
+[gd_scene load_steps=6 format=3 uid="uid://7w1oc6saxxhg"]
+
+[ext_resource type="PackedScene" uid="uid://b8r5dkyitwl3g" path="res://Scenes/BasicSceneToInheritFrom.tscn" id="1_ehdxn"]
+[ext_resource type="Shader" path="res://Scenes/pixelate.gdshader" id="2_lerxk"]
+[ext_resource type="Script" path="res://Scenes/ShaderController.gd" id="2_ne7tc"]
+[ext_resource type="Texture2D" uid="uid://ckyrrag6iksa8" path="res://icon.svg" id="3_hf7io"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_nc6r5"]
+shader = ExtResource("2_lerxk")
+shader_parameter/size_x = 0.008
+shader_parameter/size_y = 0.008
+
+[node name="Node2D" instance=ExtResource("1_ehdxn")]
+
+[node name="Camera2D" parent="." index="0"]
+script = ExtResource("2_ne7tc")
+
+[node name="ColorRect" parent="Camera2D/CanvasLayer" index="0"]
+material = SubResource("ShaderMaterial_nc6r5")
+
+[node name="VSlider" type="VSlider" parent="Camera2D/CanvasLayer" index="1"]
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 16.0
+grow_vertical = 2
+min_value = 0.002
+max_value = 0.03
+step = 0.002
+value = 0.008
+
+[node name="Icon" type="Sprite2D" parent="." index="1"]
+position = Vector2(280, 222)
+texture = ExtResource("3_hf7io")
+
+[node name="Icon2" type="Sprite2D" parent="." index="2"]
+position = Vector2(887, 437)
+texture = ExtResource("3_hf7io")
+
+[node name="Icon3" type="Sprite2D" parent="." index="3"]
+position = Vector2(-160, -88)
+texture = ExtResource("3_hf7io")
+
+[connection signal="value_changed" from="Camera2D/CanvasLayer/VSlider" to="Camera2D" method="_on_v_slider_value_changed"]

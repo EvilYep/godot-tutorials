@@ -9,9 +9,6 @@ shader = ExtResource("2_vicr8")
 
 [node name="Node2D" instance=ExtResource("1_ky4k8")]
 
-[node name="Camera2D" parent="." index="0"]
-position = Vector2(576, 320)
-
 [node name="ColorRect" parent="Camera2D/CanvasLayer" index="0"]
 material = SubResource("ShaderMaterial_ncefl")
 
@@ -21,4 +18,8 @@ texture = ExtResource("3_uktyi")
 
 [node name="Icon2" type="Sprite2D" parent="." index="2"]
 position = Vector2(887, 437)
+texture = ExtResource("3_uktyi")
+
+[node name="Icon3" type="Sprite2D" parent="." index="3"]
+position = Vector2(-160, -88)
 texture = ExtResource("3_uktyi")
