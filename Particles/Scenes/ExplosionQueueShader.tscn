@@ -1,0 +1,9 @@
+[gd_scene load_steps=4 format=3 uid="uid://doa567hv42ijt"]
+
+[ext_resource type="PackedScene" uid="uid://bpqgtlkbolseh" path="res://Scenes/ParticleQueue.tscn" id="1_wfh22"]
+[ext_resource type="Script" path="res://Scenes/ExplosionQueueShader.gd" id="2_0avfy"]
+[ext_resource type="PackedScene" uid="uid://bj2a4r32dn7sp" path="res://Scenes/BasicParticleToRepeatShader.tscn" id="3_yl03n"]
+
+[node name="ParticleQueue" instance=ExtResource("1_wfh22")]
+script = ExtResource("2_0avfy")
+particle = ExtResource("3_yl03n")

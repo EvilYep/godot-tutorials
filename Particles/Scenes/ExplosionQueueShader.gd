@@ -6,7 +6,9 @@ extends "res://Scenes/ParticleQueue.gd"
 
 func _input(_event: InputEvent) -> void:
 	if Input.is_action_just_pressed("click"):
-		get_next_particle().global_position = get_global_mouse_position()
+		var p : GPUParticles2D = get_next_particle()
+		p.global_position = get_global_mouse_position()
+		p.process_material.set_shader_parameter("bound", p.to_local(Vector2(0, 400)).y)
 		trigger()
 
 #### VIRTUALS ####

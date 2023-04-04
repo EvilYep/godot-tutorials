@@ -1,7 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://7w1oc6saxxhg"]
+[gd_scene load_steps=6 format=3 uid="uid://cgfogo6holxck"]
 
 [ext_resource type="PackedScene" uid="uid://b8r5dkyitwl3g" path="res://Scenes/BasicSceneToInheritFrom.tscn" id="1_ehdxn"]
-[ext_resource type="Shader" path="res://Scenes/pixelate.gdshader" id="2_lerxk"]
+[ext_resource type="Shader" path="res://Scenes/shaders/pixelate.gdshader" id="2_lerxk"]
 [ext_resource type="Script" path="res://Scenes/ShaderController.gd" id="2_ne7tc"]
 [ext_resource type="Texture2D" uid="uid://ckyrrag6iksa8" path="res://icon.svg" id="3_hf7io"]
 

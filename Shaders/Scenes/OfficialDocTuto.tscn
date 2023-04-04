@@ -1,6 +1,6 @@
-[gd_scene load_steps=8 format=3 uid="uid://bcdduc06hh83o"]
+[gd_scene load_steps=8 format=3]
 
-[ext_resource type="Shader" path="res://Scenes/OfficialDocTuto.gdshader" id="1_cw1av"]
+[ext_resource type="Shader" path="res://Scenes/shaders/OfficialDocTuto.gdshader" id="1_cw1av"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_pou33"]
 fractal_octaves = 3

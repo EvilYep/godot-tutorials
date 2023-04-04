@@ -17,7 +17,7 @@ func _ready():
 
 #### LOGIC ####
 
-func get_next_particle() -> Node:
+func get_next_particle() -> GPUParticles2D:
 	return get_child(index)
 
 func trigger() -> void:
