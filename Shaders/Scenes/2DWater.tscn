@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://cxwkiw5g7uq7l"]
+
+[ext_resource type="Shader" path="res://Scenes/shaders/2DWater.gdshader" id="1_5pwbp"]
+[ext_resource type="Texture2D" uid="uid://b0hlp1246co3" path="res://Assets/2Dwater/water_diffuse.png" id="1_rlpi5"]
+[ext_resource type="Script" path="res://Scenes/Scripts/2DWater.gd" id="3_0186f"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hu1hb"]
+shader = ExtResource("1_5pwbp")
+shader_parameter/tiled_factor = Vector2(5, 5)
+shader_parameter/aspect_ratio = 0.497238
+shader_parameter/offset_scale = Vector2(2, 2)
+shader_parameter/amplitude = Vector2(0.05, 0.1)
+shader_parameter/time_scale = Vector2(1, 0.7)
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_repeat = 2
+material = SubResource("ShaderMaterial_hu1hb")
+position = Vector2(724, 360)
+scale = Vector2(5.65625, 2.8125)
+texture = ExtResource("1_rlpi5")
+script = ExtResource("3_0186f")
