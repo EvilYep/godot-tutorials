@@ -1,0 +1,37 @@
+[gd_scene load_steps=9 format=3 uid="uid://l04sm6mr5jyq"]
+
+[ext_resource type="Shader" path="res://Scenes/WaterUvOffset/WaterLit.gdshader" id="1_oakw0"]
+[ext_resource type="Texture2D" uid="uid://dq2a5wt1iivoe" path="res://Assets/2Dwater/water_uv_offset.png" id="2_5v7ge"]
+[ext_resource type="Texture2D" uid="uid://b0hlp1246co3" path="res://Assets/2Dwater/water_diffuse.png" id="3_1rx53"]
+[ext_resource type="Texture2D" uid="uid://c3a706bmk3tet" path="res://Assets/2Dwater/water_normal.png" id="4_bhd4s"]
+[ext_resource type="Script" path="res://Scenes/Scripts/2DWater.gd" id="4_qhasn"]
+[ext_resource type="Texture2D" uid="uid://bu0f3x6cmv5fq" path="res://Assets/2Dwater/light.png" id="6_p2uwf"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hu1hb"]
+shader = ExtResource("1_oakw0")
+shader_parameter/tile_factor = 10.0
+shader_parameter/aspect_ratio = 0.555556
+shader_parameter/uv_offset_size = Vector2(0.3, 0.8)
+shader_parameter/waves_size = Vector2(0.04, 0.02)
+shader_parameter/time_scale = Vector2(0.02, 0)
+shader_parameter/uv_offset_texture = ExtResource("2_5v7ge")
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_ckl48"]
+diffuse_texture = ExtResource("3_1rx53")
+normal_texture = ExtResource("4_bhd4s")
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_repeat = 2
+material = SubResource("ShaderMaterial_hu1hb")
+position = Vector2(576, 320)
+scale = Vector2(4.5, 2.5)
+texture = SubResource("CanvasTexture_ckl48")
+script = ExtResource("4_qhasn")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(600, 320)
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("6_p2uwf")
+texture_scale = 2.5
