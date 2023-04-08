@@ -1,0 +1,28 @@
+[gd_scene load_steps=6 format=3 uid="uid://dmwn567ibvrnk"]
+
+[ext_resource type="Shader" path="res://Scenes/WaterUvOffset/WaterSineAndTexture.gdshader" id="1_npw80"]
+[ext_resource type="Texture2D" uid="uid://dq2a5wt1iivoe" path="res://Assets/2Dwater/water_uv_offset.png" id="2_h2e32"]
+[ext_resource type="Texture2D" uid="uid://b0hlp1246co3" path="res://Assets/2Dwater/water_diffuse.png" id="2_u22me"]
+[ext_resource type="Script" path="res://Scenes/Scripts/2DWater.gd" id="3_8cw6q"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hu1hb"]
+shader = ExtResource("1_npw80")
+shader_parameter/tiled_factor = Vector2(10, 10)
+shader_parameter/aspect_ratio = 0.59322
+shader_parameter/uv_offset_size = Vector2(0.3, 0.8)
+shader_parameter/uv_offset_waves_size = Vector2(0.08, 0.08)
+shader_parameter/uv_offset_time_scale = 0.05
+shader_parameter/sine_amplitude = Vector2(0.1, 0.1)
+shader_parameter/sine_offset_scale = Vector2(0.2, 0.8)
+shader_parameter/sine_time_scale = Vector2(1, 1)
+shader_parameter/uv_offset_texture = ExtResource("2_h2e32")
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_repeat = 2
+material = SubResource("ShaderMaterial_hu1hb")
+position = Vector2(708, 420)
+scale = Vector2(5.53125, 3.28125)
+texture = ExtResource("2_u22me")
+script = ExtResource("3_8cw6q")
