@@ -1,0 +1,154 @@
+[gd_scene load_steps=23 format=3 uid="uid://buyy22hnuiei"]
+
+[ext_resource type="Texture2D" uid="uid://c8nrr2bjmu4ss" path="res://Assets/StanTalking.png" id="1_crqbq"]
+[ext_resource type="Shader" path="res://Scenes/shaders/Outline.gdshader" id="1_hcqyn"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jbpy5"]
+shader = ExtResource("1_hcqyn")
+shader_parameter/stroke = 1.0
+shader_parameter/outline_color = Color(0, 1, 0, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fugg1"]
+atlas = ExtResource("1_crqbq")
+region = Rect2(0, 0, 50, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l5inx"]
+atlas = ExtResource("1_crqbq")
+region = Rect2(50, 0, 50, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_be33w"]
+atlas = ExtResource("1_crqbq")
+region = Rect2(100, 0, 50, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sdqjs"]
+atlas = ExtResource("1_crqbq")
+region = Rect2(150, 0, 50, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3g1au"]
+atlas = ExtResource("1_crqbq")
+region = Rect2(200, 0, 50, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8dl1p"]
+atlas = ExtResource("1_crqbq")
+region = Rect2(250, 0, 50, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ro3oy"]
+atlas = ExtResource("1_crqbq")
+region = Rect2(300, 0, 50, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ivcs2"]
+atlas = ExtResource("1_crqbq")
+region = Rect2(350, 0, 50, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k8fj6"]
+atlas = ExtResource("1_crqbq")
+region = Rect2(400, 0, 50, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4nqty"]
+atlas = ExtResource("1_crqbq")
+region = Rect2(450, 0, 50, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_otyw5"]
+atlas = ExtResource("1_crqbq")
+region = Rect2(500, 0, 50, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0qjbk"]
+atlas = ExtResource("1_crqbq")
+region = Rect2(550, 0, 50, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_67wbp"]
+atlas = ExtResource("1_crqbq")
+region = Rect2(600, 0, 50, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1ejhq"]
+atlas = ExtResource("1_crqbq")
+region = Rect2(650, 0, 50, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1su3l"]
+atlas = ExtResource("1_crqbq")
+region = Rect2(700, 0, 50, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_emoqj"]
+atlas = ExtResource("1_crqbq")
+region = Rect2(750, 0, 50, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6tu7t"]
+atlas = ExtResource("1_crqbq")
+region = Rect2(800, 0, 50, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lwseh"]
+atlas = ExtResource("1_crqbq")
+region = Rect2(850, 0, 50, 60)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ulbon"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fugg1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l5inx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_be33w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sdqjs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3g1au")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8dl1p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ro3oy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ivcs2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k8fj6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4nqty")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_otyw5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0qjbk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_67wbp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1ejhq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1su3l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_emoqj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6tu7t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lwseh")
+}],
+"loop": true,
+"name": &"default",
+"speed": 13.0
+}]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_repeat = 1
+material = SubResource("ShaderMaterial_jbpy5")
+position = Vector2(576, 320)
+scale = Vector2(5, 5)
+sprite_frames = SubResource("SpriteFrames_ulbon")
+autoplay = "default"
+frame_progress = 0.152382

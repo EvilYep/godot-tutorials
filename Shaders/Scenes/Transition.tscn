@@ -4,25 +4,11 @@
 [ext_resource type="Texture2D" uid="uid://co5dnlmrh141i" path="res://Assets/Masks/swoosh.png" id="2_3qna5"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ud7hd"]
+resource_local_to_scene = true
 shader = ExtResource("1_5iwrw")
 shader_parameter/cutoff = 0.0
 shader_parameter/smooth_size = 0.1
 shader_parameter/mask = ExtResource("2_3qna5")
-
-[sub_resource type="Animation" id="Animation_uotwx"]
-resource_name = "transition"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:material:shader_parameter/cutoff")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [0.0, 1.0]
-}
 
 [sub_resource type="Animation" id="Animation_d0uue"]
 length = 0.001
@@ -37,6 +23,21 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_uotwx"]
+resource_name = "transition"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/cutoff")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_1eye6"]

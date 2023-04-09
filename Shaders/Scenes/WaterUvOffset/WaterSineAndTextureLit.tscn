@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://wt2gyatppae2"]
+[gd_scene load_steps=10 format=3 uid="uid://wt2gyatppae2"]
 
 [ext_resource type="Shader" path="res://Scenes/WaterUvOffset/WaterSineAndTextureLit.gdshader" id="1_d3bjs"]
 [ext_resource type="Texture2D" uid="uid://dq2a5wt1iivoe" path="res://Assets/2Dwater/water_uv_offset.png" id="2_q5gb0"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://Scenes/Scripts/2DWater.gd" id="4_bkfj0"]
 [ext_resource type="Texture2D" uid="uid://c3a706bmk3tet" path="res://Assets/2Dwater/water_normal.png" id="4_ivqdc"]
 [ext_resource type="Texture2D" uid="uid://bu0f3x6cmv5fq" path="res://Assets/2Dwater/light.png" id="6_pxaj5"]
+[ext_resource type="PackedScene" uid="uid://34txqsc3xx6b" path="res://Scenes/DancingSprite.tscn" id="7_r55dn"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_hu1hb"]
 shader = ExtResource("1_d3bjs")
@@ -39,3 +40,13 @@ position = Vector2(952, 384)
 scale = Vector2(3.25, 3.25)
 texture = ExtResource("6_pxaj5")
 texture_scale = 2.8
+
+[node name="Node2D" parent="." instance=ExtResource("7_r55dn")]
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
