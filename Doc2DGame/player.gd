@@ -45,7 +45,7 @@ func start(pos: Vector2) -> void:
 	show()
 	collision_shape.disabled = false
 
-func _on_body_entered(body: Node2D) -> void:
+func _on_body_entered(_body: Node2D) -> void:
 	hide()
 	hit.emit()
 	collision_shape.set_deferred("disabled", true)
