@@ -5,6 +5,7 @@ signal squashed
 @export var min_speed: int = 10 # m per s
 @export var max_speed: int = 18
 
+
 func _physics_process(_delta: float) -> void:
 	move_and_slide()
 
@@ -18,6 +19,8 @@ func initialize(start_position: Vector3, player_position: Vector3) -> void:
 	velocity = Vector3.FORWARD * random_speed
 	# direction
 	velocity = velocity.rotated(Vector3.UP, rotation.y)
+	
+	$AnimationPlayer.speed_scale = int(float(random_speed) / float(min_speed))
 
 func _on_visibility_notifier_screen_exited() -> void:
 	queue_free()

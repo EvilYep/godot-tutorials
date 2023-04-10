@@ -7,6 +7,7 @@ signal hit
 @export var jump_impulse: int = 20
 @export var bounce_impulse: int = 16
 @onready var pivot: Node3D = $Pivot
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 var target_velocity := Vector3.ZERO
 
@@ -26,8 +27,11 @@ func _physics_process(delta: float) -> void:
 	if direction != Vector3.ZERO:
 		direction = direction.normalized()
 		pivot.look_at(position + direction, Vector3.UP)
+		animation_player.speed_scale = 4
+	else:
+		animation_player.speed_scale = 1
 	
-	# Grounbd velocity
+	# Ground velocity
 	target_velocity.x = direction.x * speed
 	target_velocity.z = direction.z * speed
 	
@@ -57,6 +61,8 @@ func _physics_process(delta: float) -> void:
 	# Actual move
 	velocity = target_velocity
 	move_and_slide()
+	
+	pivot.rotation.x = PI / 6 * velocity.y / jump_impulse
 
 func die() -> void:
 	hit.emit()
