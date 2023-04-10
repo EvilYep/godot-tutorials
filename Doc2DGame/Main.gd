@@ -3,7 +3,10 @@ extends Node
 @export var mob_scene: PackedScene = preload("res://Mob.tscn")
 var score: int
 
+@onready var music: AudioStreamPlayer = $Music
+@onready var death_sound: AudioStreamPlayer = $DeathSound
 @onready var player: Area2D = $Player
+
 @onready var mob_timer: Timer = $MobTimer
 @onready var score_timer: Timer = $ScoreTimer
 @onready var start_timer: Timer = $StartTimer
@@ -14,6 +17,8 @@ func _ready() -> void:
 	pass
 
 func game_over() -> void:
+	music.stop()
+	death_sound.play()
 	score_timer.stop()
 	mob_timer.stop()
 	
@@ -27,6 +32,7 @@ func new_game() -> void:
 	
 	hud.update_score(score)
 	hud.show_message("Get Ready !")
+	music.play()
 
 func _on_start_timer_timeout() -> void:
 	score_timer.start()
