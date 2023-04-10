@@ -50,7 +50,7 @@ func _physics_process(delta: float) -> void:
 		if collision.get_collider().is_in_group("mob"):
 			var mob = collision.get_collider()
 			# we checked we collided with it from above
-			if Vector3.UP.dot(collision.get_normal()) > 0.1:
+			if Vector3.UP.dot(collision.get_normal()) > 0.05:
 				mob.squash() 
 				target_velocity.y = bounce_impulse
 	
