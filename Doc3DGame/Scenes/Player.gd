@@ -1,5 +1,7 @@
 extends CharacterBody3D
 
+signal hit
+
 @export var speed: int = 14 # m per s
 @export var fall_acceleration: int = 75 # m per s^2
 @export var jump_impulse: int = 20
@@ -55,3 +57,10 @@ func _physics_process(delta: float) -> void:
 	# Actual move
 	velocity = target_velocity
 	move_and_slide()
+
+func die() -> void:
+	hit.emit()
+	queue_free()
+
+func _on_mob_detector_body_entered(_body: Node3D) -> void:
+	die()
