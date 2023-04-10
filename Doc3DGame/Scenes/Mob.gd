@@ -1,5 +1,7 @@
 extends CharacterBody3D
 
+signal squashed
+
 @export var min_speed: int = 10 # m per s
 @export var max_speed: int = 18
 
@@ -18,4 +20,8 @@ func initialize(start_position: Vector3, player_position: Vector3) -> void:
 	velocity = velocity.rotated(Vector3.UP, rotation.y)
 
 func _on_visibility_notifier_screen_exited() -> void:
+	queue_free()
+
+func squash() -> void:
+	squashed.emit()
 	queue_free()
