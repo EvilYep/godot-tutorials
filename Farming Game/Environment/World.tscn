@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://b1fsiigjbbnwd"]
+[gd_scene load_steps=10 format=3 uid="uid://b1fsiigjbbnwd"]
 
 [ext_resource type="Script" path="res://Environment/World.gd" id="1_31e7m"]
 [ext_resource type="Texture2D" uid="uid://cgxapmo3v4npm" path="res://Assets/farmingTilesheetComplete.png" id="1_g8ulh"]
 [ext_resource type="PackedScene" uid="uid://m8y50i47e8gu" path="res://Characters/Player.tscn" id="2_5wfrd"]
 [ext_resource type="PackedScene" uid="uid://bkuq8awy8wa0w" path="res://Items/Seedpacks/CarrotSeedpack.tscn" id="3_3fkfq"]
 [ext_resource type="PackedScene" uid="uid://cnogv6jj3w1jh" path="res://Environment/GrowingZone.tscn" id="3_aa2at"]
+[ext_resource type="PackedScene" uid="uid://cv7b5e1aqg5ws" path="res://Environment/SellZone.tscn" id="4_4esov"]
 [ext_resource type="PackedScene" uid="uid://bow3y1tdnh0o2" path="res://Items/Seedpacks/OnionSeedpack.tscn" id="4_pd5w5"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1xqda"]
@@ -560,6 +561,7 @@ texture = ExtResource("1_g8ulh")
 
 [sub_resource type="TileSet" id="TileSet_rvncu"]
 physics_layer_0/collision_layer = 1
+physics_layer_0/collision_mask = 0
 sources/2 = SubResource("TileSetAtlasSource_1xqda")
 
 [node name="World" type="Node2D"]
@@ -593,6 +595,9 @@ position = Vector2(177, 23)
 [node name="GrowingZone" parent="Background" instance=ExtResource("3_aa2at")]
 position = Vector2(200, 29)
 
+[node name="SellZone" parent="Background" instance=ExtResource("4_4esov")]
+position = Vector2(232, 88)
+
 [node name="Player" parent="." instance=ExtResource("2_5wfrd")]
 
 [node name="CarrotSeedpack" parent="." instance=ExtResource("3_3fkfq")]
@@ -602,6 +607,20 @@ position = Vector2(169, 79)
 position = Vector2(207, 13)
 
 [node name="UI" type="CanvasLayer" parent="."]
+
+[node name="coins" type="Sprite2D" parent="UI"]
+position = Vector2(284, 12)
+texture = ExtResource("1_g8ulh")
+hframes = 13
+vframes = 13
+frame = 69
+
+[node name="Label" type="Label" parent="UI/coins"]
+offset_left = 10.0
+offset_top = -12.0
+offset_right = 33.0
+offset_bottom = 14.0
+text = "= 0"
 
 [node name="carrot" type="Sprite2D" parent="UI"]
 position = Vector2(264, 152)

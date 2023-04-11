@@ -30,7 +30,7 @@ func _on_area_input_event(_viewport: Node, _event: InputEvent, _shape_idx: int) 
 	if Input.is_action_just_pressed("click"):
 		if plant_grown:
 			Global.count[plant_name] += 1
-			Global.plant_harvested.emit(plant_name)
+			Global.update_plant_count.emit(plant_name)
 			plant_growing = false
 			plant_grown = false
 			plant_sprite.play("none")

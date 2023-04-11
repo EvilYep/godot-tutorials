@@ -1,6 +1,5 @@
 extends CharacterBody2D
 
-
 var speed: int = 50
 var direction := Vector2.ZERO
 
@@ -25,3 +24,14 @@ func _process(_delta: float) -> void:
 	velocity = direction * speed
 	
 	move_and_slide()
+
+func sell() -> void:
+	var gains: int = 0
+	
+	for plant in Global.count:
+		gains += Global.count[plant] * Global.price[plant]
+		Global.count[plant] = 0
+		Global.update_plant_count.emit(plant)
+	
+	Global.coins += gains
+	Global.update_coins.emit()

@@ -3,6 +3,7 @@ extends StaticBody2D
 
 @export var seed_type: Global.Plants
 @export var growth_speed: int
+
 var selected = false
 
 func _ready() -> void:
