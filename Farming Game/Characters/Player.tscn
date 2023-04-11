@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://m8y50i47e8gu"]
+[gd_scene load_steps=15 format=3 uid="uid://m8y50i47e8gu"]
 
 [ext_resource type="Texture2D" uid="uid://cgxapmo3v4npm" path="res://Assets/farmingTilesheetComplete.png" id="1_c2ycf"]
 [ext_resource type="Script" path="res://Characters/Player.gd" id="1_rviig"]
@@ -96,9 +96,21 @@ animations = [{
 "speed": 6.0
 }]
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vkgcv"]
+radius = 2.0
+height = 6.0
+
 [node name="Player" type="CharacterBody2D"]
+y_sort_enabled = true
 script = ExtResource("1_rviig")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+y_sort_enabled = true
+position = Vector2(0, -5)
 sprite_frames = SubResource("SpriteFrames_dq83f")
 animation = &"walk_down"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+y_sort_enabled = true
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_vkgcv")
