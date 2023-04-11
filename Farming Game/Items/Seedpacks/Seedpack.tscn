@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://tmi03wkq1wtf"]
+
+[ext_resource type="Script" path="res://Items/Seedpacks/Seedpack.gd" id="1_vhss8"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_053x6"]
+resource_local_to_scene = true
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0bm5e"]
+radius = 5.09902
+
+[node name="Seedpack" type="StaticBody2D"]
+script = ExtResource("1_vhss8")
+metadata/_edit_group_ = true
+
+[node name="AnimatedSprite" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_053x6")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_0bm5e")
+
+[connection signal="input_event" from="Area2D" to="." method="_on_area_2d_input_event"]
