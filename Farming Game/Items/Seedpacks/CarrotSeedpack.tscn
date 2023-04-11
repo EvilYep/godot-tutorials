@@ -20,6 +20,7 @@ animations = [{
 }]
 
 [node name="CarrotSeedpack" instance=ExtResource("1_wsy3t")]
+growth_speed = 3
 
 [node name="AnimatedSprite" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_r7kju")

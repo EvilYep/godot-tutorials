@@ -20,6 +20,8 @@ animations = [{
 }]
 
 [node name="OnionSeedpack" instance=ExtResource("1_yud7n")]
+seed_type = 1
+growth_speed = 5
 
 [node name="AnimatedSprite" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_pke2v")

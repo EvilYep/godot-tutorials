@@ -1,7 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://b1fsiigjbbnwd"]
+[gd_scene load_steps=9 format=3 uid="uid://b1fsiigjbbnwd"]
 
+[ext_resource type="Script" path="res://Environment/World.gd" id="1_31e7m"]
 [ext_resource type="Texture2D" uid="uid://cgxapmo3v4npm" path="res://Assets/farmingTilesheetComplete.png" id="1_g8ulh"]
 [ext_resource type="PackedScene" uid="uid://m8y50i47e8gu" path="res://Characters/Player.tscn" id="2_5wfrd"]
+[ext_resource type="PackedScene" uid="uid://bkuq8awy8wa0w" path="res://Items/Seedpacks/CarrotSeedpack.tscn" id="3_3fkfq"]
+[ext_resource type="PackedScene" uid="uid://cnogv6jj3w1jh" path="res://Environment/GrowingZone.tscn" id="3_aa2at"]
+[ext_resource type="PackedScene" uid="uid://bow3y1tdnh0o2" path="res://Items/Seedpacks/OnionSeedpack.tscn" id="4_pd5w5"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1xqda"]
 texture = ExtResource("1_g8ulh")
@@ -560,6 +564,7 @@ sources/2 = SubResource("TileSetAtlasSource_1xqda")
 
 [node name="World" type="Node2D"]
 y_sort_enabled = true
+script = ExtResource("1_31e7m")
 
 [node name="Background" type="TileMap" parent="."]
 y_sort_enabled = true
@@ -582,4 +587,46 @@ layer_2/y_sort_origin = -1
 layer_2/z_index = 0
 layer_2/tile_data = PackedInt32Array(327692, 2, 11, 458756, 720898, 7, 458755, 655362, 7, 458757, 589826, 7, 458758, 786434, 6, 524294, 458754, 7, 589830, 458754, 7, 655366, 458754, 7, 720902, 786434, 7, 720901, 589826, 7, 720900, 589826, 7, 720899, 589826, 7, 720898, 589826, 7, 720897, 589826, 7, 720896, 524290, 7, 458754, 589826, 7, 458753, 589826, 7, 458752, 524290, 6, 524288, 458754, 7, 589824, 458754, 7, 655360, 458754, 7)
 
+[node name="GrowingZone2" parent="Background" instance=ExtResource("3_aa2at")]
+position = Vector2(177, 23)
+
+[node name="GrowingZone" parent="Background" instance=ExtResource("3_aa2at")]
+position = Vector2(200, 29)
+
 [node name="Player" parent="." instance=ExtResource("2_5wfrd")]
+
+[node name="CarrotSeedpack" parent="." instance=ExtResource("3_3fkfq")]
+position = Vector2(169, 79)
+
+[node name="OnionSeedpack" parent="." instance=ExtResource("4_pd5w5")]
+position = Vector2(207, 13)
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="carrot" type="Sprite2D" parent="UI"]
+position = Vector2(264, 152)
+texture = ExtResource("1_g8ulh")
+hframes = 13
+vframes = 13
+frame = 34
+
+[node name="Label" type="Label" parent="UI/carrot"]
+offset_left = 10.0
+offset_top = -12.0
+offset_right = 33.0
+offset_bottom = 14.0
+text = "= 0"
+
+[node name="onion" type="Sprite2D" parent="UI"]
+position = Vector2(264, 168)
+texture = ExtResource("1_g8ulh")
+hframes = 13
+vframes = 13
+frame = 44
+
+[node name="Label" type="Label" parent="UI/onion"]
+offset_left = 10.0
+offset_top = -12.0
+offset_right = 33.0
+offset_bottom = 14.0
+text = "= 0"

@@ -1,10 +1,18 @@
 extends Node
 
+signal plant_harvested(plant_name: String)
+
 enum Plants {
 	CARROT,
 	ONION,
 }
-var selected_plant: int = Plants.CARROT
 
-var num_carrots: int = 0
-var num_onions: int = 0
+var selected_plant: int = -1
+
+var count: Dictionary = {
+	"carrot": 0,
+	"onion": 0
+}
+
+func get_selected_plant_name(index: int) -> String:
+	return Plants.keys()[index].to_lower()
