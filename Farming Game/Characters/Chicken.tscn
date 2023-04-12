@@ -1,0 +1,91 @@
+[gd_scene load_steps=11 format=3 uid="uid://otag7espqttf"]
+
+[ext_resource type="Texture2D" uid="uid://cgxapmo3v4npm" path="res://Assets/farmingTilesheetComplete.png" id="1_o6gx6"]
+[ext_resource type="Script" path="res://Characters/Chicken.gd" id="1_yh0mr"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_08imc"]
+atlas = ExtResource("1_o6gx6")
+region = Rect2(48, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qfabt"]
+atlas = ExtResource("1_o6gx6")
+region = Rect2(64, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_onagc"]
+atlas = ExtResource("1_o6gx6")
+region = Rect2(80, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1chej"]
+atlas = ExtResource("1_o6gx6")
+region = Rect2(0, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r20er"]
+atlas = ExtResource("1_o6gx6")
+region = Rect2(16, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uvxxs"]
+atlas = ExtResource("1_o6gx6")
+region = Rect2(32, 32, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vdk1l"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_08imc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qfabt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_onagc")
+}],
+"loop": true,
+"name": &"eating",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1chej")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r20er")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uvxxs")
+}],
+"loop": true,
+"name": &"walking",
+"speed": 8.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_sv1ii"]
+radius = 2.0
+height = 6.0
+
+[node name="Chicken" type="CharacterBody2D"]
+y_sort_enabled = true
+collision_layer = 4
+collision_mask = 3
+script = ExtResource("1_yh0mr")
+metadata/_edit_group_ = true
+
+[node name="AnimatedSprite" type="AnimatedSprite2D" parent="."]
+position = Vector2(1, -5)
+sprite_frames = SubResource("SpriteFrames_vdk1l")
+animation = &"walking"
+
+[node name="ChangeStateTimer" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
+autostart = true
+
+[node name="WalkingTimer" type="Timer" parent="."]
+one_shot = true
+autostart = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_sv1ii")
+
+[connection signal="timeout" from="ChangeStateTimer" to="." method="_on_change_state_timer_timeout"]
+[connection signal="timeout" from="WalkingTimer" to="." method="_on_walking_timer_timeout"]

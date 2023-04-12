@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://b1fsiigjbbnwd"]
+[gd_scene load_steps=11 format=3 uid="uid://b1fsiigjbbnwd"]
 
 [ext_resource type="Script" path="res://Environment/World.gd" id="1_31e7m"]
 [ext_resource type="Texture2D" uid="uid://cgxapmo3v4npm" path="res://Assets/farmingTilesheetComplete.png" id="1_g8ulh"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://cv7b5e1aqg5ws" path="res://Environment/SellZone.tscn" id="4_4esov"]
 [ext_resource type="PackedScene" uid="uid://bow3y1tdnh0o2" path="res://Items/Seedpacks/OnionSeedpack.tscn" id="4_pd5w5"]
 [ext_resource type="PackedScene" uid="uid://eproqtqr3v4o" path="res://Environment/Shop.tscn" id="5_u8yfn"]
+[ext_resource type="PackedScene" uid="uid://otag7espqttf" path="res://Characters/Chicken.tscn" id="6_hc0e3"]
 
 [node name="World" type="Node2D"]
 y_sort_enabled = true
@@ -78,6 +79,18 @@ position = Vector2(232, 88)
 
 [node name="Shop" parent="." instance=ExtResource("5_u8yfn")]
 position = Vector2(208, 88)
+
+[node name="Chickens" type="Node2D" parent="."]
+y_sort_enabled = true
+
+[node name="Chicken" parent="Chickens" instance=ExtResource("6_hc0e3")]
+position = Vector2(29, 154)
+
+[node name="Chicken2" parent="Chickens" instance=ExtResource("6_hc0e3")]
+position = Vector2(87, 141)
+
+[node name="Chicken3" parent="Chickens" instance=ExtResource("6_hc0e3")]
+position = Vector2(68, 167)
 
 [node name="Player" parent="." instance=ExtResource("2_5wfrd")]
 
