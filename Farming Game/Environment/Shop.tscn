@@ -1,0 +1,51 @@
+[gd_scene load_steps=8 format=3 uid="uid://eproqtqr3v4o"]
+
+[ext_resource type="Script" path="res://Environment/Shop.gd" id="1_4r2g3"]
+[ext_resource type="Texture2D" uid="uid://cgxapmo3v4npm" path="res://Assets/farmingTilesheetComplete.png" id="1_8hth0"]
+[ext_resource type="TileSet" uid="uid://tqjdpblw1os0" path="res://Environment/WorldTileSet.tres" id="1_vj8ff"]
+[ext_resource type="PackedScene" uid="uid://dtnj67epcuw2" path="res://UI/ShopMenu.tscn" id="4_p2fbq"]
+[ext_resource type="PackedScene" uid="uid://cea5mh6exn24t" path="res://Items/Seedpacks/BerrySeedpack.tscn" id="5_togew"]
+[ext_resource type="PackedScene" uid="uid://dm52ystfwviis" path="res://Items/Seedpacks/RandomSeedpack.tscn" id="6_veetu"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7j34w"]
+
+[node name="Shop" type="Node2D"]
+script = ExtResource("1_4r2g3")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, 2)
+texture = ExtResource("1_8hth0")
+hframes = 13
+vframes = 13
+frame = 13
+
+[node name="TileMap" type="TileMap" parent="."]
+y_sort_enabled = true
+tile_set = ExtResource("1_vj8ff")
+format = 2
+layer_0/tile_data = PackedInt32Array(65535, 2, 11)
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, 8)
+shape = SubResource("CircleShape2D_7j34w")
+
+[node name="ShopMenu" parent="." instance=ExtResource("4_p2fbq")]
+visible = false
+offset_left = -23.0
+offset_top = -33.0
+offset_right = 24.0
+offset_bottom = -12.0
+
+[node name="BerrySeedpack" parent="." instance=ExtResource("5_togew")]
+visible = false
+position = Vector2(-26, 7)
+
+[node name="RandomSeedpack" parent="." instance=ExtResource("6_veetu")]
+visible = false
+position = Vector2(-20, 7)
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

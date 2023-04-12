@@ -35,3 +35,6 @@ func sell() -> void:
 	
 	Global.coins += gains
 	Global.update_coins.emit()
+
+func open_shop() -> void:
+	print("shop")

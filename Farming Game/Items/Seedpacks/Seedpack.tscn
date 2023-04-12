@@ -4,6 +4,12 @@
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_053x6"]
 resource_local_to_scene = true
+animations = [{
+"frames": [],
+"loop": true,
+"name": &"default",
+"speed": 0.0
+}]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0bm5e"]
 radius = 5.09902

@@ -1,0 +1,101 @@
+[gd_scene load_steps=3 format=3 uid="uid://dtnj67epcuw2"]
+
+[ext_resource type="Script" path="res://UI/ShopMenu.gd" id="1_3rnrx"]
+[ext_resource type="Texture2D" uid="uid://cgxapmo3v4npm" path="res://Assets/farmingTilesheetComplete.png" id="1_12dm5"]
+
+[node name="ShopMenu" type="Control"]
+layout_mode = 3
+anchor_right = 0.125
+anchor_bottom = 0.111
+offset_right = 8.0
+offset_bottom = 0.0200005
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_3rnrx")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.34902)
+
+[node name="Icon" type="Sprite2D" parent="ColorRect"]
+position = Vector2(9, 7)
+texture = ExtResource("1_12dm5")
+hframes = 13
+vframes = 13
+frame = 64
+
+[node name="ArrowLeft" type="Sprite2D" parent="ColorRect"]
+position = Vector2(7, 17)
+rotation = 1.5708
+texture = ExtResource("1_12dm5")
+hframes = 13
+vframes = 13
+frame = 76
+
+[node name="ArrowRight" type="Sprite2D" parent="ColorRect"]
+position = Vector2(11, 16)
+rotation = -1.5708
+texture = ExtResource("1_12dm5")
+hframes = 13
+vframes = 13
+frame = 76
+
+[node name="ButtonLeft" type="Button" parent="ColorRect"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_left = 1.0
+offset_top = 13.0
+offset_right = 9.0
+offset_bottom = 21.0
+
+[node name="ButtonRight" type="Button" parent="ColorRect"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_left = 9.0
+offset_top = 13.0
+offset_right = 17.0
+offset_bottom = 21.0
+
+[node name="Price" type="Label" parent="ColorRect"]
+layout_mode = 0
+offset_left = 19.0
+offset_right = 40.0
+offset_bottom = 17.0
+theme_override_font_sizes/font_size = 9
+text = "100"
+
+[node name="CoinIcon" type="Sprite2D" parent="ColorRect"]
+position = Vector2(42, 7)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_12dm5")
+hframes = 13
+vframes = 13
+frame = 69
+
+[node name="BuyButton" type="Button" parent="ColorRect"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_left = 19.0
+offset_top = 12.0
+offset_right = 47.0
+offset_bottom = 20.0
+
+[node name="BuyLabel" type="Label" parent="ColorRect"]
+layout_mode = 0
+offset_left = 19.0
+offset_top = 12.0
+offset_right = 75.0
+offset_bottom = 28.0
+scale = Vector2(0.5, 0.5)
+theme_override_font_sizes/font_size = 9
+text = "Buy"
+horizontal_alignment = 1
+
+[connection signal="pressed" from="ColorRect/ButtonLeft" to="." method="_on_button_left_pressed"]
+[connection signal="pressed" from="ColorRect/ButtonRight" to="." method="_on_button_right_pressed"]
+[connection signal="pressed" from="ColorRect/BuyButton" to="." method="_on_buy_button_pressed"]

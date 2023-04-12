@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://cnogv6jj3w1jh"]
+[gd_scene load_steps=17 format=3 uid="uid://cnogv6jj3w1jh"]
 
 [ext_resource type="Texture2D" uid="uid://cgxapmo3v4npm" path="res://Assets/farmingTilesheetComplete.png" id="1_4a1rj"]
 [ext_resource type="Script" path="res://Environment/GrowingZone.gd" id="1_n0xf3"]
@@ -20,6 +20,18 @@ animations = [{
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_o4npl"]
 size = Vector2(12, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a461c"]
+atlas = ExtResource("1_4a1rj")
+region = Rect2(0, 64, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pq41f"]
+atlas = ExtResource("1_4a1rj")
+region = Rect2(192, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u1csw"]
+atlas = ExtResource("1_4a1rj")
+region = Rect2(176, 48, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5wukn"]
 atlas = ExtResource("1_4a1rj")
@@ -51,6 +63,20 @@ region = Rect2(96, 48, 16, 16)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_xupc1"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a461c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pq41f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u1csw")
+}],
+"loop": true,
+"name": &"berry_growing",
+"speed": 0.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_5wukn")

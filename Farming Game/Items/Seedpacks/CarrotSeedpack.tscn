@@ -16,7 +16,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"default",
-"speed": 5.0
+"speed": 0.0
 }]
 
 [node name="CarrotSeedpack" instance=ExtResource("1_wsy3t")]

@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://dm52ystfwviis"]
+
+[ext_resource type="PackedScene" uid="uid://tmi03wkq1wtf" path="res://Items/Seedpacks/Seedpack.tscn" id="1_mrvmq"]
+[ext_resource type="Texture2D" uid="uid://cgxapmo3v4npm" path="res://Assets/farmingTilesheetComplete.png" id="2_ur71w"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_125md"]
+atlas = ExtResource("2_ur71w")
+region = Rect2(192, 64, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1yxfv"]
+resource_local_to_scene = true
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_125md")
+}],
+"loop": true,
+"name": &"default",
+"speed": 0.0
+}]
+
+[node name="RandomSeedpack" instance=ExtResource("1_mrvmq")]
+seed_type = 3
+growth_speed = 2
+
+[node name="AnimatedSprite" parent="." index="0"]
+sprite_frames = SubResource("SpriteFrames_1yxfv")

@@ -12,7 +12,10 @@ func _on_area_area_entered(plant_seed: Area2D) -> void:
 	plant = Global.selected_plant
 	if not plant_growing:
 		if plant != -1:
-			plant_name = Global.get_selected_plant_name(plant)
+			if plant == Global.Plants.RANDOM:
+				plant_name = Global.get_selected_plant_name(randi() % 3)
+			else:
+				plant_name = Global.get_selected_plant_name(plant)
 			plant_growing = true
 			growth_timer.wait_time = plant_seed.owner.growth_speed
 			growth_timer.start()
