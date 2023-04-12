@@ -1,0 +1,55 @@
+[gd_scene load_steps=6 format=3 uid="uid://brvpl4iencf4a"]
+
+[ext_resource type="Script" path="res://Environment/WeatherController.gd" id="1_ni2pt"]
+[ext_resource type="Texture2D" uid="uid://ws6v5dxh3i5c" path="res://Assets/rain.png" id="1_wphi0"]
+
+[sub_resource type="Gradient" id="Gradient_4xapj"]
+colors = PackedColorArray(0.160784, 0.113725, 0.368627, 1, 0.160784, 0.113725, 0.368627, 0.592157)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_w3t42"]
+gradient = SubResource("Gradient_4xapj")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_o6nof"]
+emission_shape = 3
+emission_box_extents = Vector3(175, 1, 1)
+particle_flag_disable_z = true
+gravity = Vector3(-10, 98, 0)
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+scale_min = 0.75
+color_ramp = SubResource("GradientTexture1D_w3t42")
+
+[node name="WeatherController" type="Node2D"]
+script = ExtResource("1_ni2pt")
+
+[node name="Rain" type="Control" parent="."]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 320.0
+offset_bottom = 180.0
+mouse_filter = 2
+
+[node name="RainColor" type="ColorRect" parent="Rain"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.129412, 0.129412, 0.129412, 0.396078)
+
+[node name="RainDrops" type="GPUParticles2D" parent="Rain"]
+position = Vector2(160, -8)
+amount = 500
+process_material = SubResource("ParticleProcessMaterial_o6nof")
+texture = ExtResource("1_wphi0")
+lifetime = 2.0
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 15.0
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

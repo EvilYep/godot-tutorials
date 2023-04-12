@@ -2,6 +2,7 @@ extends Node
 
 signal update_plant_count(plant_name: String)
 signal update_coins()
+signal weather_changed(weather: String)
 
 enum Plants {
 	CARROT,
@@ -28,6 +29,11 @@ var owned: Dictionary = {
 	"random": false
 }
 var coins: int = 0
+
+var weather: String = "none":
+	set(w):
+		weather = w
+		weather_changed.emit(weather)
 
 func get_selected_plant_name(index: int) -> String:
 	return Plants.keys()[index].to_lower()

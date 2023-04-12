@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://b1fsiigjbbnwd"]
+[gd_scene load_steps=12 format=3 uid="uid://b1fsiigjbbnwd"]
 
 [ext_resource type="Script" path="res://Environment/World.gd" id="1_31e7m"]
 [ext_resource type="Texture2D" uid="uid://cgxapmo3v4npm" path="res://Assets/farmingTilesheetComplete.png" id="1_g8ulh"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://bow3y1tdnh0o2" path="res://Items/Seedpacks/OnionSeedpack.tscn" id="4_pd5w5"]
 [ext_resource type="PackedScene" uid="uid://eproqtqr3v4o" path="res://Environment/Shop.tscn" id="5_u8yfn"]
 [ext_resource type="PackedScene" uid="uid://otag7espqttf" path="res://Characters/Chicken.tscn" id="6_hc0e3"]
+[ext_resource type="PackedScene" uid="uid://brvpl4iencf4a" path="res://Environment/WeatherController.tscn" id="10_8conm"]
 
 [node name="World" type="Node2D"]
 y_sort_enabled = true
@@ -99,6 +100,8 @@ position = Vector2(169, 79)
 
 [node name="OnionSeedpack" parent="." instance=ExtResource("4_pd5w5")]
 position = Vector2(207, 13)
+
+[node name="WeatherController" parent="." instance=ExtResource("10_8conm")]
 
 [node name="UI" type="CanvasLayer" parent="."]
 

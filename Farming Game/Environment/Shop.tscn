@@ -12,7 +12,7 @@
 [node name="Shop" type="Node2D"]
 script = ExtResource("1_4r2g3")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Seller" type="Sprite2D" parent="."]
 position = Vector2(0, 2)
 texture = ExtResource("1_8hth0")
 hframes = 13
@@ -25,10 +25,10 @@ tile_set = ExtResource("1_vj8ff")
 format = 2
 layer_0/tile_data = PackedInt32Array(65535, 2, 11)
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="Player_Detector" type="Area2D" parent="."]
 collision_mask = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player_Detector"]
 position = Vector2(0, 8)
 shape = SubResource("CircleShape2D_7j34w")
 
@@ -47,5 +47,5 @@ position = Vector2(-26, 7)
 visible = false
 position = Vector2(-20, 7)
 
-[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
-[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
+[connection signal="body_entered" from="Player_Detector" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Player_Detector" to="." method="_on_area_2d_body_exited"]
