@@ -37,10 +37,11 @@ func swap_item() -> void:
 func buy() -> void:
 	Global.coins -= price
 	Global.owned[plant_name] = true
+	Global.update_coins.emit()
 	item_bought.emit(plant_name)
 	update_menu(icon.frame, price)
 
-func update_menu(frame: int = 53, p: int = 150) -> void:
+func update_menu(frame: int = icon.frame, p: int = price) -> void:
 	icon.frame = frame
 	price = p
 	price_label.text = str(p)
