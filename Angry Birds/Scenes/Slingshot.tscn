@@ -33,4 +33,7 @@ shape = SubResource("CircleShape2D_hftfm")
 [node name="Center" type="Marker2D" parent="."]
 position = Vector2(0, -99)
 
+[node name="ShotArc" type="Line2D" parent="."]
+default_color = Color(0.909804, 0.909804, 0.909804, 0.905882)
+
 [connection signal="input_event" from="TouchArea" to="." method="_on_touch_area_input_event"]

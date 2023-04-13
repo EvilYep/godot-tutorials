@@ -10,7 +10,7 @@ func _on_body_entered(body: Node) -> void:
 			if body.is_in_group("Player"):
 				queue_free()
 			else:
-				var damage = body.linear_velocity.length() * 0.25
+				var damage = body.linear_velocity.length() * 0.1
 				hp -= damage
 				if hp <= 0:
 					queue_free()

@@ -17,6 +17,7 @@ var player: RigidBody2D
 @onready var left_line: Line2D = $LeftLine
 @onready var right_line: Line2D = $RightLine
 @onready var slingshot_center: Vector2 = $Center.position
+@onready var shot_arc: Line2D = $ShotArc
 
 func _ready() -> void:
 	sling_state_changed.connect(_on_sling_state_changed)
@@ -26,13 +27,13 @@ func _ready() -> void:
 	player = get_tree().get_first_node_in_group("Player")
 	player.position = slingshot_center
 
-func _process(_delta: float) -> void:
+func _process(delta: float) -> void:
 	match slingshot_state:
 		SlingState.IDLE:
 			pass
 		SlingState.PULLING:
 			if Input.is_action_pressed("left_mouse"):
-				_pull()
+				_pull(delta)
 			else:
 				_throw()
 		SlingState.BIRD_THROWN:
@@ -40,20 +41,36 @@ func _process(_delta: float) -> void:
 		SlingState.RESET:
 			pass
 
-func _pull() -> void:
+func _pull(delta: float) -> void:
 	var mouse_pos = get_global_mouse_position()
 	if mouse_pos.distance_to(slingshot_center) > 100:
 		mouse_pos = slingshot_center.direction_to(mouse_pos) * 100 + slingshot_center
+		
 	player.position = mouse_pos
 	left_line.points[0] = mouse_pos
 	right_line.points[0] = mouse_pos
+	
+	var distance = mouse_pos - slingshot_center
+	var velocity = distance / 2.5 * mouse_pos
+	var point_pos = slingshot_center
+	shot_arc.clear_points()
+	for i in 5000:
+		shot_arc.add_point(point_pos)
+		velocity.y += 980 * delta #980 = default gravity
+		point_pos += velocity * delta
+		if point_pos.y > shot_arc.position.y:
+			break
 
 func _throw() -> void:
+	shot_arc.clear_points()
 	var mouse_pos = get_global_mouse_position()
-	var distance = mouse_pos.distance_to(slingshot_center)
-	var velocity = slingshot_center - mouse_pos
+	if mouse_pos.distance_to(slingshot_center) > 100:
+		mouse_pos = slingshot_center.direction_to(mouse_pos) * 100 + slingshot_center
+	var velocity =  mouse_pos - slingshot_center
+	
 	player.throw_bird()
-	player.apply_impulse(velocity / 50 * distance, Vector2())
+	player.apply_impulse(velocity / 2.5 * mouse_pos, Vector2())
+	
 	slingshot_state = SlingState.BIRD_THROWN
 	_reset_lines()
 	Game.current_game_state = Game.GameState.PLAY
