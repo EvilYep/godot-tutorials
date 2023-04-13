@@ -14,10 +14,11 @@ func _ready() -> void:
 	player = get_tree().get_nodes_in_group("Player")[0]
 	
 
-func _physics_process(_delta: float) -> void:
+func _process(_delta: float) -> void:
 	if following_player:
 		if is_instance_valid(player):
-			var player_pos = clamp(player.position.x, 0, 1000)
-			global_position = Vector2(player_pos, starting_pos.y)
+			if player.position.x > position.x:
+				var player_pos = clamp(player.position.x, 0, 1000)
+				global_position = Vector2(player_pos, starting_pos.y)
 		else:
 			following_player = false
