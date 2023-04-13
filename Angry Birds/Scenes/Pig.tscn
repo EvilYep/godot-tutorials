@@ -6,7 +6,7 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_xk746"]
 radius = 34.0
 
-[node name="Pig" type="RigidBody2D"]
+[node name="Pig" type="RigidBody2D" groups=["Pigs"]]
 max_contacts_reported = 10
 contact_monitor = true
 script = ExtResource("1_evg3i")

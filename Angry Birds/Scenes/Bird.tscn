@@ -6,7 +6,7 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_1cwbr"]
 radius = 20.025
 
-[node name="Bird" type="RigidBody2D" groups=["Bird", "Player"]]
+[node name="Bird" type="RigidBody2D" groups=["Birds", "Player"]]
 freeze_mode = 1
 script = ExtResource("1_13e7t")
 metadata/_edit_group_ = true

@@ -264,6 +264,10 @@ layer_0/tile_data = PackedInt32Array(-65536, 589824, 4, -65535, 589824, 4, -6553
 [node name="Slingshot" parent="." instance=ExtResource("1_32fu2")]
 
 [node name="Bird" parent="." instance=ExtResource("2_qjneb")]
+position = Vector2(-56, -26)
+
+[node name="Bird2" parent="." instance=ExtResource("2_qjneb")]
+position = Vector2(-109, -26)
 
 [node name="Camera2D" type="Camera2D" parent="." groups=["Camera"]]
 position = Vector2(587, -188)

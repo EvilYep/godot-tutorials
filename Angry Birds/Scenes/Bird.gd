@@ -12,6 +12,7 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	if state == BirdState.THROWN and linear_velocity <= Vector2(2, 2):
 		await get_tree().create_timer(5.0).timeout
+		Game.bird_despawned.emit()
 		queue_free()
 
 func throw_bird() -> void:
