@@ -50,6 +50,7 @@ func _throw() -> void:
 	slingshot_state = SlingState.BIRD_THROWN
 	_reset_lines()
 	#Game.current_game_state = 
+	get_tree().get_nodes_in_group("Camera")[0].following_player = true
 
 func _reset_lines() -> void:
 	left_line.points[0] = slingshot_center
