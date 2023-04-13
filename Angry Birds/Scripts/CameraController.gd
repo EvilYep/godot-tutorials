@@ -18,7 +18,7 @@ func _process(_delta: float) -> void:
 	if following_player:
 		if is_instance_valid(player):
 			if player.position.x > position.x:
-				var player_pos = clamp(player.position.x, 0, 1000)
+				var player_pos = clamp(player.position.x, 0, 1250)
 				global_position = Vector2(player_pos, starting_pos.y)
 		else:
 			following_player = false

@@ -1,6 +1,6 @@
 extends RigidBody2D
 
-var hp: int = 5
+var hp := 5.0
 
 @onready var sprite: Sprite2D = $Sprite
 
@@ -10,8 +10,7 @@ func _ready() -> void:
 func _on_body_entered(body: Node) -> void:
 	if is_instance_valid(body):
 		if body is RigidBody2D and body.is_in_group("Player"):
-			var damage = body.linear_velocity.length() * 0.05
-			print(str(damage))
+			var damage = body.linear_velocity.length() * 0.1
 			hp -= damage
 			if hp <= 0:
 				queue_free()
