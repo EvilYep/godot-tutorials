@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://q4b13y3blk5x"]
+[gd_scene load_steps=12 format=3 uid="uid://q4b13y3blk5x"]
 
 [ext_resource type="PackedScene" uid="uid://dihsq4ybdfvjj" path="res://Scenes/Slingshot.tscn" id="1_32fu2"]
 [ext_resource type="Texture2D" uid="uid://b827qn8je3f7h" path="res://Assets/Background.png" id="1_lv325"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://uv2pwqemi30i" path="res://Scenes/Bricks/Brick1.tscn" id="6_bwww5"]
 [ext_resource type="PackedScene" uid="uid://yancqmfhvo1o" path="res://Scenes/Bricks/Brick2.tscn" id="7_virq7"]
 [ext_resource type="PackedScene" uid="uid://cex0vbhps8fpw" path="res://Scenes/Pig.tscn" id="8_f2ify"]
+[ext_resource type="PackedScene" uid="uid://dl6j4p6k130jt" path="res://Scenes/UI.tscn" id="9_o4kar"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_nydg2"]
 texture = ExtResource("2_6hogp")
@@ -248,7 +249,7 @@ tile_size = Vector2i(32, 32)
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_nydg2")
 
-[node name="Game" type="Node2D"]
+[node name="Game" type="Node2D" groups=["Game"]]
 
 [node name="Background" type="TextureRect" parent="."]
 offset_left = -1347.0
@@ -305,3 +306,5 @@ position = Vector2(1407, -476)
 
 [node name="Pig" parent="." instance=ExtResource("8_f2ify")]
 position = Vector2(1408, -531)
+
+[node name="UI" parent="." instance=ExtResource("9_o4kar")]

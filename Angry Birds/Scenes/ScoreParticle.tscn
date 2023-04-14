@@ -1,0 +1,50 @@
+[gd_scene load_steps=5 format=3 uid="uid://dvlwwlcm2rigj"]
+
+[ext_resource type="Script" path="res://Scenes/ScoreParticle.gd" id="1_xs461"]
+
+[sub_resource type="Gradient" id="Gradient_dbuy6"]
+offsets = PackedFloat32Array(0, 0.847826, 1)
+colors = PackedColorArray(1, 0.690196, 0, 1, 1, 0.690196, 0, 1, 1, 0.690196, 0, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_22id1"]
+gradient = SubResource("Gradient_dbuy6")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_b8yb5"]
+particle_flag_disable_z = true
+direction = Vector3(1, 1, 0)
+initial_velocity_min = 5.0
+initial_velocity_max = 5.0
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+scale_min = 2.0
+scale_max = 2.0
+color_ramp = SubResource("GradientTexture1D_22id1")
+
+[node name="ScoreParticle" type="Node2D"]
+script = ExtResource("1_xs461")
+
+[node name="SubViewport" type="SubViewport" parent="."]
+disable_3d = true
+transparent_bg = true
+size = Vector2i(128, 128)
+
+[node name="Points" type="Label" parent="SubViewport"]
+offset_right = 128.0
+offset_bottom = 128.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+text = "420"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Particle" type="GPUParticles2D" parent="."]
+emitting = false
+amount = 1
+process_material = SubResource("ParticleProcessMaterial_b8yb5")
+lifetime = 4.0
+one_shot = true
+speed_scale = 2.0
+
+[node name="DespawnTimer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="DespawnTimer" to="." method="_on_despawn_timer_timeout"]

@@ -11,7 +11,10 @@ func _on_body_entered(body: Node) -> void:
 				queue_free()
 			else:
 				var damage = body.linear_velocity.length() * 0.1
+				if damage > 1 :
+					Utils.pop_score(global_position, damage)
 				hp -= damage
+				Game.score += damage * 10
 				if hp <= 0:
 					queue_free()
 				elif hp <= 75:
