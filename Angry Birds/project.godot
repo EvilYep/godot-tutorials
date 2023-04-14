@@ -20,6 +20,10 @@ config/icon="res://icon.svg"
 Game="*res://Game.gd"
 Utils="*res://Utils.gd"
 
+[display]
+
+window/stretch/mode="canvas_items"
+
 [input]
 
 left_mouse={
