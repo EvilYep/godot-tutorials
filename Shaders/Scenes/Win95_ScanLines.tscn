@@ -1,0 +1,176 @@
+[gd_scene load_steps=19 format=3 uid="uid://bs17ik6x8dpgj"]
+
+[ext_resource type="FontFile" uid="uid://dlfhc3qyudy00" path="res://Assets/Battlenet.ttf" id="1_0clhd"]
+[ext_resource type="Script" path="res://Scenes/Scripts/Win95_ScanLines.gd" id="1_e4ac1"]
+[ext_resource type="Texture2D" uid="uid://cdvv0vemtjqie" path="res://Assets/win95/PatchRegular.png" id="2_s021a"]
+[ext_resource type="Texture2D" uid="uid://cfwvp7eahg56f" path="res://Assets/win95/PatchInverted.png" id="3_lk8nq"]
+[ext_resource type="Texture2D" uid="uid://bohw8od2ogk1" path="res://Assets/win95/Flag.png" id="4_5iame"]
+[ext_resource type="Texture2D" uid="uid://dlhojvsu81xb1" path="res://Assets/win95/Window.png" id="5_2nfkc"]
+[ext_resource type="Texture2D" uid="uid://db6ondnyipqdu" path="res://Assets/win95/CloseRegular.png" id="6_um47w"]
+[ext_resource type="Texture2D" uid="uid://nymb71b1e0uj" path="res://Assets/win95/ClosePressed.png" id="7_k4coq"]
+[ext_resource type="Shader" path="res://Scenes/Scripts/Win95_ScanLines.gdshader" id="9_syxxo"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y1kyg"]
+bg_color = Color(0.764706, 0.764706, 0.764706, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hfk30"]
+bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ix0c3"]
+texture = ExtResource("2_s021a")
+texture_margin_left = 2.0
+texture_margin_top = 2.0
+texture_margin_right = 2.0
+texture_margin_bottom = 2.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_rhj2a"]
+texture = ExtResource("3_lk8nq")
+texture_margin_left = 2.0
+texture_margin_top = 2.0
+texture_margin_right = 2.0
+texture_margin_bottom = 2.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_kt6x3"]
+texture = ExtResource("3_lk8nq")
+texture_margin_left = 2.0
+texture_margin_top = 2.0
+texture_margin_right = 2.0
+texture_margin_bottom = 2.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_udiyv"]
+texture = ExtResource("5_2nfkc")
+texture_margin_left = 4.0
+texture_margin_top = 23.0
+texture_margin_right = 4.0
+texture_margin_bottom = 4.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_jjawe"]
+texture = ExtResource("6_um47w")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_eh00o"]
+texture = ExtResource("7_k4coq")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hbj56"]
+shader = ExtResource("9_syxxo")
+shader_parameter/screen_height = 648.0
+
+[node name="Desktop" type="Control"]
+texture_filter = 1
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_e4ac1")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0.501961, 0.501961, 1)
+
+[node name="TaskBar" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -56.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_y1kyg")
+
+[node name="ThinWhiteLine" type="Panel" parent="TaskBar"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -57.0
+offset_bottom = -56.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_hfk30")
+
+[node name="StartButton" type="Button" parent="TaskBar"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 112.0
+offset_bottom = 48.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_0clhd")
+theme_override_font_sizes/font_size = 33
+theme_override_styles/normal = SubResource("StyleBoxTexture_ix0c3")
+theme_override_styles/hover = SubResource("StyleBoxTexture_rhj2a")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_rhj2a")
+text = "Start
+"
+icon = ExtResource("4_5iame")
+expand_icon = true
+
+[node name="TimePanel" type="Panel" parent="TaskBar"]
+layout_mode = 0
+offset_left = 1040.0
+offset_top = 8.0
+offset_right = 1144.0
+offset_bottom = 48.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_kt6x3")
+
+[node name="Time" type="Label" parent="TaskBar/TimePanel"]
+layout_mode = 0
+offset_right = 104.0
+offset_bottom = 40.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_0clhd")
+theme_override_font_sizes/font_size = 33
+text = "4:20 PM"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Window" type="Panel" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 271.0
+offset_top = 137.0
+offset_right = 744.0
+offset_bottom = 512.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_udiyv")
+
+[node name="Title" type="Label" parent="Window"]
+layout_mode = 0
+offset_right = 452.0
+offset_bottom = 23.0
+theme_override_fonts/font = ExtResource("1_0clhd")
+theme_override_font_sizes/font_size = 20
+text = "Shaderz"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CloseButton" type="Button" parent="Window"]
+layout_mode = 0
+offset_left = 453.0
+offset_top = 4.0
+offset_right = 469.0
+offset_bottom = 20.0
+theme_override_styles/normal = SubResource("StyleBoxTexture_jjawe")
+theme_override_styles/hover = SubResource("StyleBoxTexture_eh00o")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_eh00o")
+
+[node name="ScanLines" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_hbj56")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[connection signal="pressed" from="TaskBar/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="Window/CloseButton" to="." method="_on_close_button_pressed"]
