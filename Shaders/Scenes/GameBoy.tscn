@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://j17wtr5lj1uu"]
+
+[ext_resource type="Texture2D" uid="uid://dk7o86wcjitfl" path="res://Assets/Chrono_Trig.png" id="1_lyh3p"]
+[ext_resource type="Shader" path="res://Scenes/shaders/GameBoy.gdshader" id="1_tym1a"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_kfq8o"]
+shader = ExtResource("1_tym1a")
+shader_parameter/darkest = Color(0.0588235, 0.219608, 0.0588235, 1)
+shader_parameter/dark = Color(0.188235, 0.384314, 0.188235, 1)
+shader_parameter/light = Color(0.545098, 0.67451, 0.0588235, 1)
+shader_parameter/lightest = Color(0.607843, 0.737255, 0.0588235, 1)
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_repeat = 1
+position = Vector2(568, 168)
+scale = Vector2(5, 5)
+texture = ExtResource("1_lyh3p")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_kfq8o")
+offset_right = 1152.0
+offset_bottom = 648.0
