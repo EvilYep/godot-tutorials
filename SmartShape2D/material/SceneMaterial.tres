@@ -1,0 +1,139 @@
+[gd_resource type="Resource" script_class="SS2D_Material_Shape" load_steps=30 format=3 uid="uid://bn8plb7soiroh"]
+
+[ext_resource type="Script" path="res://addons/rmsmartshape/materials/edge_material.gd" id="1_5xrr0"]
+[ext_resource type="Texture2D" uid="uid://d2c7jqw7a0tl7" path="res://assets/allaround.png" id="2_rtbfb"]
+[ext_resource type="Script" path="res://addons/rmsmartshape/normal_range.gd" id="3_jupov"]
+[ext_resource type="Script" path="res://addons/rmsmartshape/materials/edge_material_metadata.gd" id="4_woubl"]
+[ext_resource type="Texture2D" uid="uid://b0xjwjtw4o8ii" path="res://assets/top_center.png" id="5_65rm2"]
+[ext_resource type="Texture2D" uid="uid://blrrk4dxaig6d" path="res://assets/top_left.png" id="6_d3psw"]
+[ext_resource type="Texture2D" uid="uid://0xco3gai5r2b" path="res://assets/top_right.png" id="7_p1k7y"]
+[ext_resource type="Texture2D" uid="uid://b8pbggr1malxx" path="res://assets/bottom_center.png" id="8_h0alo"]
+[ext_resource type="Texture2D" uid="uid://c8dbglp0hcfu7" path="res://assets/bottom_left.png" id="9_50gq8"]
+[ext_resource type="Texture2D" uid="uid://ckren6tjlaa08" path="res://assets/bottom_right.png" id="10_wijcf"]
+[ext_resource type="Texture2D" uid="uid://b6rbqdodbnryi" path="res://assets/fill.png" id="11_tf2od"]
+[ext_resource type="Script" path="res://addons/rmsmartshape/materials/shape_material.gd" id="12_epa5q"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_wwkye"]
+diffuse_texture = ExtResource("2_rtbfb")
+texture_repeat = 2
+
+[sub_resource type="Resource" id="Resource_yp48e"]
+script = ExtResource("1_5xrr0")
+textures = Array[Texture2D]([SubResource("CanvasTexture_wwkye")])
+textures_corner_outer = Array[Texture2D]([])
+textures_corner_inner = Array[Texture2D]([])
+textures_taper_left = Array[Texture2D]([])
+textures_taper_right = Array[Texture2D]([])
+randomize_texture = false
+use_corner_texture = true
+use_taper_texture = true
+fit_mode = 0
+
+[sub_resource type="Resource" id="Resource_manpl"]
+script = ExtResource("3_jupov")
+begin = 0.0
+distance = 360.0
+edgeRendering = Vector2(0, 0)
+
+[sub_resource type="Resource" id="Resource_kgvpl"]
+script = ExtResource("4_woubl")
+edge_material = SubResource("Resource_yp48e")
+normal_range = SubResource("Resource_manpl")
+weld = true
+render = true
+z_index = 0
+z_as_relative = true
+offset = 0.0
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_ruupm"]
+diffuse_texture = ExtResource("5_65rm2")
+texture_repeat = 2
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_ylrin"]
+diffuse_texture = ExtResource("6_d3psw")
+texture_repeat = 2
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_40itb"]
+diffuse_texture = ExtResource("7_p1k7y")
+texture_repeat = 2
+
+[sub_resource type="Resource" id="Resource_d0h2s"]
+script = ExtResource("1_5xrr0")
+textures = Array[Texture2D]([SubResource("CanvasTexture_ruupm")])
+textures_corner_outer = Array[Texture2D]([])
+textures_corner_inner = Array[Texture2D]([])
+textures_taper_left = Array[Texture2D]([SubResource("CanvasTexture_ylrin")])
+textures_taper_right = Array[Texture2D]([SubResource("CanvasTexture_40itb")])
+randomize_texture = false
+use_corner_texture = true
+use_taper_texture = true
+fit_mode = 0
+
+[sub_resource type="Resource" id="Resource_043tt"]
+script = ExtResource("3_jupov")
+begin = 45.0
+distance = 90.0
+edgeRendering = Vector2(0, 0)
+
+[sub_resource type="Resource" id="Resource_vvuy1"]
+script = ExtResource("4_woubl")
+edge_material = SubResource("Resource_d0h2s")
+normal_range = SubResource("Resource_043tt")
+weld = true
+render = true
+z_index = 0
+z_as_relative = true
+offset = 0.0
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_d0ehq"]
+diffuse_texture = ExtResource("8_h0alo")
+texture_repeat = 2
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_aed5j"]
+diffuse_texture = ExtResource("9_50gq8")
+texture_repeat = 2
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_upos3"]
+diffuse_texture = ExtResource("10_wijcf")
+texture_repeat = 2
+
+[sub_resource type="Resource" id="Resource_1pm3j"]
+script = ExtResource("1_5xrr0")
+textures = Array[Texture2D]([SubResource("CanvasTexture_d0ehq")])
+textures_corner_outer = Array[Texture2D]([])
+textures_corner_inner = Array[Texture2D]([])
+textures_taper_left = Array[Texture2D]([SubResource("CanvasTexture_aed5j")])
+textures_taper_right = Array[Texture2D]([SubResource("CanvasTexture_upos3")])
+randomize_texture = false
+use_corner_texture = true
+use_taper_texture = true
+fit_mode = 0
+
+[sub_resource type="Resource" id="Resource_awy1i"]
+script = ExtResource("3_jupov")
+begin = 225.0
+distance = 90.0
+edgeRendering = Vector2(0, 0)
+
+[sub_resource type="Resource" id="Resource_0rwcm"]
+script = ExtResource("4_woubl")
+edge_material = SubResource("Resource_1pm3j")
+normal_range = SubResource("Resource_awy1i")
+weld = true
+render = true
+z_index = 0
+z_as_relative = true
+offset = 0.0
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_2mb1f"]
+diffuse_texture = ExtResource("11_tf2od")
+texture_repeat = 2
+
+[resource]
+script = ExtResource("12_epa5q")
+_edge_meta_materials = Array[ExtResource("4_woubl")]([SubResource("Resource_kgvpl"), SubResource("Resource_vvuy1"), SubResource("Resource_0rwcm")])
+fill_textures = Array[Texture2D]([SubResource("CanvasTexture_2mb1f")])
+fill_texture_z_index = -10
+fill_texture_show_behind_parent = false
+fill_mesh_offset = 0.0
+render_offset = 0.0
