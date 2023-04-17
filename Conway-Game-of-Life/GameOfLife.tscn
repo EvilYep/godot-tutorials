@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://cfwb072ykff6e"]
+
+[ext_resource type="Texture2D" uid="uid://cslqphy6s1p3m" path="res://icon.svg" id="1_crptw"]
+[ext_resource type="Script" path="res://GameOfLife.gd" id="2_g8d4t"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fhyr8"]
+texture = ExtResource("1_crptw")
+0:0/size_in_atlas = Vector2i(8, 8)
+0:0/next_alternative_id = 2
+0:0/0 = 0
+0:0/0/modulate = Color(5, 5, 5, 1)
+0:0/1 = 1
+0:0/1/modulate = Color(0, 0, 0, 1)
+
+[sub_resource type="TileSet" id="TileSet_v0i48"]
+tile_size = Vector2i(128, 128)
+sources/0 = SubResource("TileSetAtlasSource_fhyr8")
+
+[node name="TileMap" type="TileMap"]
+tile_set = SubResource("TileSet_v0i48")
+format = 2
+script = ExtResource("2_g8d4t")
+width = 96
+height = 54
+
+[node name="Camera2D" type="Camera2D" parent="."]
