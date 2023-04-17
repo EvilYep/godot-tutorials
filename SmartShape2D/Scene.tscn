@@ -1,4 +1,4 @@
-[gd_scene load_steps=68 format=3 uid="uid://bm2uq3m2w8ql1"]
+[gd_scene load_steps=76 format=3 uid="uid://bm2uq3m2w8ql1"]
 
 [ext_resource type="TileSet" uid="uid://de4qrx3hkpg53" path="res://resources/SceneTileset.tres" id="1_17b1s"]
 [ext_resource type="Script" path="res://addons/rmsmartshape/shapes/shape_closed.gd" id="1_i3s0g"]
@@ -8,6 +8,10 @@
 [ext_resource type="Script" path="res://addons/rmsmartshape/shapes/point_array.gd" id="4_om74t"]
 [ext_resource type="Resource" uid="uid://bn8plb7soiroh" path="res://resources/SceneMaterial.tres" id="6_4e4iv"]
 [ext_resource type="Texture2D" uid="uid://sly610p0lkj6" path="res://assets/light.png" id="8_rqs6i"]
+[ext_resource type="Texture2D" uid="uid://dpknh1opjyfch" path="res://assets/leaf_particle.png" id="9_dfkpv"]
+[ext_resource type="Script" path="res://Light.gd" id="9_ngov0"]
+[ext_resource type="FastNoiseLite" uid="uid://cnl1g2fb45yi1" path="res://resources/Noise.tres" id="10_30qwm"]
+[ext_resource type="FastNoiseLite" uid="uid://dhmtcpgtbyrpr" path="res://resources/Noise2.tres" id="11_13h0u"]
 
 [sub_resource type="Resource" id="Resource_vcokt"]
 script = ExtResource("2_sa2ad")
@@ -431,9 +435,53 @@ adjustment_color_correction = SubResource("GradientTexture1D_fouje")
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_ns1l3"]
 blend_mode = 1
 
+[sub_resource type="Gradient" id="Gradient_6veti"]
+offsets = PackedFloat32Array(0.823276, 1)
+colors = PackedColorArray(0.32549, 0.403922, 0.235294, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_a0v0p"]
+gradient = SubResource("Gradient_6veti")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_jd5bu"]
+emission_shape = 1
+emission_sphere_radius = 15.0
+particle_flag_disable_z = true
+spread = 0.0
+gravity = Vector3(0, 10, 0)
+initial_velocity_min = 15.0
+initial_velocity_max = 15.0
+angular_velocity_min = 100.0
+angular_velocity_max = 200.0
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+angle_min = 360.0
+angle_max = 720.0
+scale_min = 0.5
+scale_max = 0.7
+color_ramp = SubResource("GradientTexture1D_a0v0p")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ix3oa"]
+emission_shape = 3
+emission_box_extents = Vector3(200, 1, 1)
+particle_flag_disable_z = true
+spread = 0.0
+gravity = Vector3(0, 10, 0)
+initial_velocity_min = 15.0
+initial_velocity_max = 15.0
+angular_velocity_min = 100.0
+angular_velocity_max = 200.0
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+angle_min = 360.0
+angle_max = 720.0
+scale_min = 0.5
+scale_max = 0.7
+color_ramp = SubResource("GradientTexture1D_a0v0p")
+
 [node name="Scene" type="Node2D"]
 
 [node name="Backdrop" type="TextureRect" parent="."]
+z_index = -2
 offset_top = -120.0
 offset_right = 640.0
 offset_bottom = 360.0
@@ -504,6 +552,8 @@ z_index = 50
 material = SubResource("CanvasItemMaterial_ns1l3")
 position = Vector2(395, 113)
 texture = ExtResource("8_rqs6i")
+script = ExtResource("9_ngov0")
+noise = ExtResource("10_30qwm")
 
 [node name="Light2" type="Sprite2D" parent="Lights"]
 modulate = Color(1, 0.48, 0.02, 1)
@@ -512,6 +562,8 @@ material = SubResource("CanvasItemMaterial_ns1l3")
 position = Vector2(395, 113)
 scale = Vector2(0.44, 0.44)
 texture = ExtResource("8_rqs6i")
+script = ExtResource("9_ngov0")
+noise = ExtResource("10_30qwm")
 
 [node name="Light5" type="Sprite2D" parent="Lights"]
 modulate = Color(1, 0.48, 0.02, 1)
@@ -520,6 +572,8 @@ material = SubResource("CanvasItemMaterial_ns1l3")
 position = Vector2(395, 113)
 scale = Vector2(0.867409, 0.867409)
 texture = ExtResource("8_rqs6i")
+script = ExtResource("9_ngov0")
+noise = ExtResource("10_30qwm")
 
 [node name="Light3" type="Sprite2D" parent="Lights"]
 modulate = Color(1, 0.48, 0.02, 1)
@@ -528,6 +582,8 @@ material = SubResource("CanvasItemMaterial_ns1l3")
 position = Vector2(437, 288)
 scale = Vector2(0.75, 0.75)
 texture = ExtResource("8_rqs6i")
+script = ExtResource("9_ngov0")
+noise = ExtResource("11_13h0u")
 
 [node name="Light4" type="Sprite2D" parent="Lights"]
 modulate = Color(1, 0.48, 0.02, 1)
@@ -536,3 +592,63 @@ material = SubResource("CanvasItemMaterial_ns1l3")
 position = Vector2(437, 288)
 scale = Vector2(0.75, 0.75)
 texture = ExtResource("8_rqs6i")
+script = ExtResource("9_ngov0")
+noise = ExtResource("11_13h0u")
+
+[node name="Particles" type="Node2D" parent="."]
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="Particles"]
+z_index = -1
+position = Vector2(314, 117)
+amount = 5
+process_material = SubResource("ParticleProcessMaterial_jd5bu")
+texture = ExtResource("9_dfkpv")
+lifetime = 5.0
+
+[node name="GPUParticles2D8" type="GPUParticles2D" parent="Particles"]
+z_index = -1
+position = Vector2(441, -14)
+amount = 5
+process_material = SubResource("ParticleProcessMaterial_ix3oa")
+texture = ExtResource("9_dfkpv")
+lifetime = 5.0
+
+[node name="GPUParticles2D2" type="GPUParticles2D" parent="Particles"]
+z_index = -1
+position = Vector2(128, 121)
+amount = 5
+process_material = SubResource("ParticleProcessMaterial_jd5bu")
+texture = ExtResource("9_dfkpv")
+lifetime = 5.0
+
+[node name="GPUParticles2D3" type="GPUParticles2D" parent="Particles"]
+z_index = -1
+position = Vector2(141, 296)
+amount = 5
+process_material = SubResource("ParticleProcessMaterial_jd5bu")
+texture = ExtResource("9_dfkpv")
+lifetime = 5.0
+
+[node name="GPUParticles2D4" type="GPUParticles2D" parent="Particles"]
+z_index = -1
+position = Vector2(195, 292)
+amount = 5
+process_material = SubResource("ParticleProcessMaterial_jd5bu")
+texture = ExtResource("9_dfkpv")
+lifetime = 5.0
+
+[node name="GPUParticles2D5" type="GPUParticles2D" parent="Particles"]
+z_index = -1
+position = Vector2(499, 281)
+amount = 5
+process_material = SubResource("ParticleProcessMaterial_jd5bu")
+texture = ExtResource("9_dfkpv")
+lifetime = 5.0
+
+[node name="GPUParticles2D6" type="GPUParticles2D" parent="Particles"]
+z_index = -1
+position = Vector2(515, 125)
+amount = 5
+process_material = SubResource("ParticleProcessMaterial_jd5bu")
+texture = ExtResource("9_dfkpv")
+lifetime = 5.0

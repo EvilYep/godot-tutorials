@@ -1,0 +1,6 @@
+[gd_resource type="FastNoiseLite" format=3 uid="uid://dhmtcpgtbyrpr"]
+
+[resource]
+noise_type = 0
+seed = 1
+frequency = 0.02
