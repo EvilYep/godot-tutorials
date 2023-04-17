@@ -26,4 +26,45 @@ script = ExtResource("2_g8d4t")
 width = 96
 height = 54
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="Camera" type="Camera2D" parent="."]
+
+[node name="NextGenerationTimer" type="Timer" parent="."]
+wait_time = 0.1
+autostart = true
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="SpeedLabel" type="Label" parent="UI"]
+offset_left = 5.0
+offset_top = 5.0
+offset_right = 320.0
+offset_bottom = 77.0
+theme_override_font_sizes/font_size = 50
+text = "SPEED 0.1"
+horizontal_alignment = 1
+
+[node name="GenerationLabel" type="Label" parent="UI"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -528.0
+offset_top = 8.0
+offset_right = -8.0
+offset_bottom = 80.0
+grow_horizontal = 0
+theme_override_font_sizes/font_size = 50
+text = "Generation 0"
+horizontal_alignment = 1
+
+[node name="SpeedSlider" type="VSlider" parent="UI"]
+offset_left = 24.0
+offset_top = 72.0
+offset_right = 72.0
+offset_bottom = 1048.0
+min_value = 0.05
+max_value = 3.0
+step = 0.05
+value = 0.1
+
+[connection signal="timeout" from="NextGenerationTimer" to="." method="_on_next_generation_timer_timeout"]
+[connection signal="value_changed" from="UI/SpeedSlider" to="." method="_on_speed_slider_value_changed"]
