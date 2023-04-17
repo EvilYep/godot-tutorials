@@ -1,11 +1,13 @@
-[gd_scene load_steps=62 format=3 uid="uid://bm2uq3m2w8ql1"]
+[gd_scene load_steps=68 format=3 uid="uid://bm2uq3m2w8ql1"]
 
 [ext_resource type="TileSet" uid="uid://de4qrx3hkpg53" path="res://resources/SceneTileset.tres" id="1_17b1s"]
 [ext_resource type="Script" path="res://addons/rmsmartshape/shapes/shape_closed.gd" id="1_i3s0g"]
+[ext_resource type="Texture2D" uid="uid://c42f0ft6hqove" path="res://assets/backdrop.png" id="1_x18ug"]
 [ext_resource type="Script" path="res://addons/rmsmartshape/vertex_properties.gd" id="2_sa2ad"]
 [ext_resource type="Script" path="res://addons/rmsmartshape/shapes/point.gd" id="3_sgip4"]
 [ext_resource type="Script" path="res://addons/rmsmartshape/shapes/point_array.gd" id="4_om74t"]
 [ext_resource type="Resource" uid="uid://bn8plb7soiroh" path="res://resources/SceneMaterial.tres" id="6_4e4iv"]
+[ext_resource type="Texture2D" uid="uid://sly610p0lkj6" path="res://assets/light.png" id="8_rqs6i"]
 
 [sub_resource type="Resource" id="Resource_vcokt"]
 script = ExtResource("2_sa2ad")
@@ -404,7 +406,38 @@ Array[int]([0, 3]): 15
 _next_key = 7
 _material_overrides = {}
 
+[sub_resource type="Gradient" id="Gradient_ewt5a"]
+offsets = PackedFloat32Array(0.00862069, 0.0603448, 0.721627, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.0980392, 0, 0.141176, 1, 0.839216, 0.717647, 0.760784, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_fouje"]
+gradient = SubResource("Gradient_ewt5a")
+
+[sub_resource type="Environment" id="Environment_lcmq5"]
+background_mode = 3
+glow_enabled = true
+glow_levels/1 = 1.0
+glow_levels/2 = 1.0
+glow_levels/4 = 1.0
+glow_intensity = 0.2
+glow_strength = 1.4
+glow_bloom = 0.06
+glow_blend_mode = 1
+glow_hdr_threshold = 0.02
+glow_hdr_scale = 0.5
+adjustment_enabled = true
+adjustment_color_correction = SubResource("GradientTexture1D_fouje")
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_ns1l3"]
+blend_mode = 1
+
 [node name="Scene" type="Node2D"]
+
+[node name="Backdrop" type="TextureRect" parent="."]
+offset_top = -120.0
+offset_right = 640.0
+offset_bottom = 360.0
+texture = ExtResource("1_x18ug")
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = ExtResource("1_17b1s")
@@ -456,3 +489,50 @@ polygon = PackedVector2Array(-41.9932, -34.4017, 305.849, -39.9596, 306.31, -25.
 tile_set = ExtResource("1_17b1s")
 format = 2
 layer_0/tile_data = PackedInt32Array(3342381, 655360, 0, 3932190, 524288, 1, 3145826, 589824, 0, 2621480, 589824, 0, 2949263, 589824, 0, 852119, 589824, 0, 720918, 589824, 0, 2555908, 589824, 0, 589882, 589824, 0, 5701696, 589824, 0, 3080272, 589824, 0, 3080261, 655360, 1, 5570702, 655360, 1, 1310745, 655360, 1, 3670113, 655360, 0, 5308479, 655360, 0, 3670095, 524288, 65536, 3538970, 524288, 131072, 3539003, 589824, 131072, 5373988, 589824, 131072, 3539008, 655360, 65537, 3408001, 524288, 131072)
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color(0.568627, 0.482353, 0.615686, 1)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_lcmq5")
+
+[node name="Lights" type="Node2D" parent="."]
+
+[node name="Light" type="Sprite2D" parent="Lights"]
+modulate = Color(1, 0.48, 0.02, 1)
+z_index = 50
+material = SubResource("CanvasItemMaterial_ns1l3")
+position = Vector2(395, 113)
+texture = ExtResource("8_rqs6i")
+
+[node name="Light2" type="Sprite2D" parent="Lights"]
+modulate = Color(1, 0.48, 0.02, 1)
+z_index = 50
+material = SubResource("CanvasItemMaterial_ns1l3")
+position = Vector2(395, 113)
+scale = Vector2(0.44, 0.44)
+texture = ExtResource("8_rqs6i")
+
+[node name="Light5" type="Sprite2D" parent="Lights"]
+modulate = Color(1, 0.48, 0.02, 1)
+z_index = 50
+material = SubResource("CanvasItemMaterial_ns1l3")
+position = Vector2(395, 113)
+scale = Vector2(0.867409, 0.867409)
+texture = ExtResource("8_rqs6i")
+
+[node name="Light3" type="Sprite2D" parent="Lights"]
+modulate = Color(1, 0.48, 0.02, 1)
+z_index = 50
+material = SubResource("CanvasItemMaterial_ns1l3")
+position = Vector2(437, 288)
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("8_rqs6i")
+
+[node name="Light4" type="Sprite2D" parent="Lights"]
+modulate = Color(1, 0.48, 0.02, 1)
+z_index = 50
+material = SubResource("CanvasItemMaterial_ns1l3")
+position = Vector2(437, 288)
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("8_rqs6i")
