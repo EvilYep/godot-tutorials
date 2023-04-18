@@ -1,0 +1,19 @@
+[gd_scene load_steps=2 format=3 uid="uid://cwfwqudarb7ii"]
+
+[ext_resource type="Script" path="res://VisibleCollisionsCheckBox.gd" id="1_rhike"]
+
+[node name="UIOptions" type="Panel"]
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 280.0
+offset_bottom = 88.0
+metadata/_edit_group_ = true
+
+[node name="VisibleCollisionsCheckBox" type="CheckBox" parent="."]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 264.0
+offset_bottom = 72.0
+text = "Show collision shapes"
+script = ExtResource("1_rhike")

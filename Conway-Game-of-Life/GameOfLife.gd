@@ -102,13 +102,13 @@ func _is_alive(pos: Vector2i) -> CellState:
 
 
 func _count_live_neighbours(pos: Vector2) -> int:
-	var live_neightbours: int = 0
+	var live_neighbours: int = 0
 	for x_off in [-1, 0, 1]:
 		for y_off in [-1, 0, 1]:
 			if x_off != y_off or x_off != 0:
 				if _is_alive(pos + Vector2(x_off, y_off)):
-					live_neightbours += 1
-	return live_neightbours
+					live_neighbours += 1
+	return live_neighbours
 
 
 func _place_glider(pos: Vector2)-> void:
