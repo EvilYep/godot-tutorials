@@ -23,8 +23,6 @@ sources/0 = SubResource("TileSetAtlasSource_fhyr8")
 tile_set = SubResource("TileSet_v0i48")
 format = 2
 script = ExtResource("2_g8d4t")
-width = 96
-height = 54
 
 [node name="Camera" type="Camera2D" parent="."]
 
