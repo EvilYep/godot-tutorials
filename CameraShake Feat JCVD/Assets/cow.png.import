@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cteenyg53sa33"
-path="res://.godot/imported/Timecop.png-fd8dab6f73eb394e17cbbb216f473fb9.ctex"
+uid="uid://b13kd3fs58c10"
+path="res://.godot/imported/cow.png-656777a54f1417fcd6d9d8cc7ce18984.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Timecop.png"
-dest_files=["res://.godot/imported/Timecop.png-fd8dab6f73eb394e17cbbb216f473fb9.ctex"]
+source_file="res://Assets/cow.png"
+dest_files=["res://.godot/imported/cow.png-656777a54f1417fcd6d9d8cc7ce18984.ctex"]
 
 [params]
 

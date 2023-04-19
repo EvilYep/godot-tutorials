@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://yrwkmvlqns54"
-path="res://.godot/imported/JCVD_spritesheet.png-5ab906145ad96f88069b63a1c1bbf978.ctex"
+uid="uid://c4cmltvnpnlv5"
+path="res://.godot/imported/Clouds.png-5fa724d96b1c15e0adf7a6ad3d39323e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://JCVD_spritesheet.png"
-dest_files=["res://.godot/imported/JCVD_spritesheet.png-5ab906145ad96f88069b63a1c1bbf978.ctex"]
+source_file="res://Assets/Clouds.png"
+dest_files=["res://.godot/imported/Clouds.png-5fa724d96b1c15e0adf7a6ad3d39323e.ctex"]
 
 [params]
 
