@@ -5,8 +5,10 @@ var mouse_pos: Vector2
 @onready var pivot: Marker2D = $Pivot
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var shadow: Sprite2D = $Shadow
+@onready var audio_stream_player: AudioStreamPlayer = $AudioStreamPlayer
 
 func attack() -> void:
+	audio_stream_player.pitch_scale = randf_range(1.7, 2.6)
 	animation_player.play("slash")
 
 func _physics_process(delta: float) -> void:
